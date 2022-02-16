@@ -1,1 +1,8 @@
 @import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+/* body block */
+@import url(./body.css);
+
+/* App block */
+@import url(./components/App/App.css);
