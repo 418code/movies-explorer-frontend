@@ -1,0 +1,15 @@
+.NotFound__header {
+  font-size: 80px;
+  line-height: 97px;
+  text-align: center;
+  padding: 0 0 10px;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .NotFound__header {
+    line-height: 169px;
+    font-size: 140px;
+    padding: 0 0 5px;
+  }
+}

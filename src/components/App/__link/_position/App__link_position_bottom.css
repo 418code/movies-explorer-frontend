@@ -1,0 +1,10 @@
+.App__link_position_bottom {
+  position: relative;
+  bottom: 10vh;
+}
+
+@media (min-width: 768px) {
+  .App__link_position_bottom {
+    bottom: 16vh;
+  }
+}

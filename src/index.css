@@ -3,6 +3,16 @@
 
 /* body block */
 @import url(./body.css);
+@import url(./body__element.css);
 
 /* App block */
 @import url(./components/App/App.css);
+@import url(./components/App/__link/App__link.css);
+@import url(./components/App/__link/_color/App__link_color_orange.css);
+@import url(./components/App/__link/_size/App__link_size_adaptive.css);
+@import url(./components/App/__link/_position/App__link_position_bottom.css);
+
+/* NotFound block */
+@import url(./components/NotFound/NotFound.css);
+@import url(./components/NotFound/__header/NotFound__header.css);
+@import url(./components/NotFound/__message/NotFound__message.css);

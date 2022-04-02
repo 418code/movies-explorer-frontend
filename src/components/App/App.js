@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
 
@@ -10,9 +11,9 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="App">
+      <div className="App body__element">
         <Routes>
-          <Route path="*" Element={<Navigate replace to="/" />}/>
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
     </CurrentUserContext.Provider>

@@ -107,3 +107,6 @@ dist
 .DS_Store
 .idea
 .vscode
+
+#custom bash scripts
+makefiles.sh
