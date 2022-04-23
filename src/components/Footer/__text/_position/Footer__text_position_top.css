@@ -1,0 +1,11 @@
+.Footer__text_position_top {
+  max-width: 300px;
+  padding: 79px 0 21px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+@media (min-width: 768px) {
+  .Footer__text_position_top {
+    max-width: 320px;
+  }
+}

@@ -1,0 +1,22 @@
+.Footer {
+  font-family: 'Inter', Arial, sans-serif;
+  min-height: 270px;
+  width: 100%;
+  display: inline-grid;
+  grid-template-rows: 115px 129px 15px;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+    "text"
+    "links"
+    "copy";
+}
+@media (min-width: 768px) {
+  .Footer {
+    grid-template-rows: 115px 56px;
+    grid-template-areas:
+      "text text"
+      "copy links";
+  }
+}

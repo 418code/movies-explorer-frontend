@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
+import Footer from '../Footer/Footer';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App body__element">
         <Routes>
+          <Route path="footer" element={<Footer />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>

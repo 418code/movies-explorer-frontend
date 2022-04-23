@@ -1,0 +1,16 @@
+.Footer__text {
+  font-size: 12px;
+  line-height: 15px;
+  color: #A0A0A0;
+  text-align: center;
+  margin: 0;
+  margin-block-start: auto;
+  grid-area: text;
+}
+
+@media (min-width: 768px) {
+  .Footer__text {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}

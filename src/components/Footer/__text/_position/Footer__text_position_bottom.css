@@ -1,0 +1,16 @@
+.Footer__text_position_bottom {
+  grid-area: copy;
+}
+
+@media (min-width: 768px) {
+  .Footer__text_position_bottom {
+    justify-self: start;
+    padding: 20px 0 20px 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .Footer__text_position_bottom {
+    padding: 20px 0 20px 70px;
+  }
+}
