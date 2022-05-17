@@ -1,0 +1,11 @@
+.App__link_position_header {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+}
+
+@media (min-width: 768px) {
+  .App__link_position_header {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,23 @@
+.Header__menu-btn {
+  width: 40px;
+  height: 43px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  background-image: url(../../../images/hamburger_icon.svg);
+  background-size: 100%;
+}
+
+@media (min-width: 768px) {
+  .Header__menu-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Header__menu-btn {
+    display: none;
+  }
+}

@@ -3,17 +3,19 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
 function App() {
 
   //context state variables
   const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
-  const {isLoggedIn} = true;
+  const isLoggedIn = true;
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App body__element">
         <Routes>
+          <Route path="header" element={<Header isLoggedIn={isLoggedIn} />}/>
           <Route path="footer" element={<Footer />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
