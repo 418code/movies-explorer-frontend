@@ -5,18 +5,11 @@
   margin: 0;
   padding: 30px 0;
   margin-block-end: auto;
-  grid-area: links;
 }
 
 @media (min-width: 768px) {
   .Footer__list {
     flex-direction: row;
-    padding: 20px 30px 20px 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .Footer__list {
-    padding: 20px 70px 20px 0;
+    padding: 20px 0;
   }
 }

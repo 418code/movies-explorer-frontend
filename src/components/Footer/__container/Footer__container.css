@@ -1,0 +1,21 @@
+.Footer__container {
+  width: calc(100% - 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid #e8e8e8;
+}
+
+@media (min-width: 768px) {
+  .Footer__container {
+    width: calc(100% - 60px);
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Footer__container {
+    width: calc(100% - 140px);
+  }
+}

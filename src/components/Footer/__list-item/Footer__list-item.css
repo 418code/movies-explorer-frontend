@@ -1,11 +1,11 @@
 .Footer__list-item {
   list-style: none;
+  margin: 0;
   padding: 0 0 12px 0;
 }
 
 .Footer__list-item:last-of-type {
   padding: 0;
-  margin: 0;
 }
 @media (min-width: 768px) {
   .Footer__list-item {
