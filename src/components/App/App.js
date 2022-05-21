@@ -4,6 +4,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import Menu from '../Menu/Menu';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="header" element={<Header isLoggedIn={isLoggedIn} />}/>
           <Route path="footer" element={<Footer />}/>
+          <Route path="menu" element={<Menu />}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>

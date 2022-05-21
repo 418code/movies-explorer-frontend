@@ -1,0 +1,20 @@
+.Menu__nav {
+  box-sizing: border-box;
+  z-index: 42;
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 145px 0 46px 0;
+  background-color: white;
+}
+
+@media (min-width: 768px) {
+  .Menu__nav {
+    padding: 159px 0 46px 0;
+  }
+}

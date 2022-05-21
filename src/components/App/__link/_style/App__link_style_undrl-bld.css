@@ -1,0 +1,10 @@
+.App__link_style_undrl-bld {
+  padding-bottom: 7px;
+  border-bottom: 2px solid black;
+}
+
+@media (min-width: 768px) {
+  .App__link_style_undrl-bld {
+    padding-bottom: 4px;
+  }
+}
