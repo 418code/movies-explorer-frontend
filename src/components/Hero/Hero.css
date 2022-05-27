@@ -1,0 +1,27 @@
+.Hero {
+  box-sizing: border-box;
+  width: calc(100% - 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  min-height: 586px;
+  margin-top: 14px;
+}
+
+@media (min-width: 768px) {
+  .Hero {
+    width: calc(100% - 40px);
+    min-height: 834px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Hero {
+    width: calc(100% - 80px);
+    min-height: 493px;
+  }
+}

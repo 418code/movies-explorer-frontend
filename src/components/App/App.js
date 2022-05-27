@@ -5,6 +5,7 @@ import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
+import Landing from '../Landing/Landing';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App body__element">
         <Routes>
+          <Route path="/" element={<Landing />}/>
           <Route path="header" element={<Header isLoggedIn={isLoggedIn} />}/>
           <Route path="footer" element={<Footer />}/>
           <Route path="menu" element={<Menu />}/>

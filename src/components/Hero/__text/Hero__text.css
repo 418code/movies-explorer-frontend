@@ -1,0 +1,30 @@
+.Hero__text {
+  font-weight: 400;
+  max-width: 278px;
+  height: 111px;
+  text-align: center;
+  font-size: 29px;
+  line-height: 37px;
+  letter-spacing: -0.04em;
+  padding: 220px 0 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .Hero__text {
+    padding: 350px 0 0;
+    max-width: 600px;
+    font-size: 40px;
+    line-height: 52px;
+    letter-spacing: -0.04em;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Hero__text {
+    padding: 160px 0 0;
+    font-size: 50px;
+    line-height: 58px;
+    max-width: 730px;
+  }
+}

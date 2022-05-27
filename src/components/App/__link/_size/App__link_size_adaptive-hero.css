@@ -1,0 +1,10 @@
+.App__link_size_adaptive-hero {
+  font-size: 10px;
+  line-height: 16px;
+}
+
+@media (min-width: 768px) {
+  .App__link_size_adaptive-hero {
+    font-size: 12px;
+  }
+}

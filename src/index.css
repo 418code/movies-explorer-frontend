@@ -15,11 +15,15 @@
 @import url(./components/App/__link/_position/App__link_position_menu.css);
 @import url(./components/App/__link/_style/App__link_style_btn.css);
 @import url(./components/App/__link/_style/App__link_style_btn-rnd.css);
+@import url(./components/App/__link/_style/App__link_style_btn-hero.css);
 @import url(./components/App/__link/_style/App__link_style_undrl-bld.css);
 @import url(./components/App/__link/_size/App__link_size_adaptive.css);
+@import url(./components/App/__link/_size/App__link_size_adaptive-hero.css);
 @import url(./components/App/__link/_size/App__link_size_med.css);
 @import url(./components/App/__link/_size/App__link_size_pmed.css);
 @import url(./components/App/__link/_size/App__link_size_large.css);
+@import url(./components/App/__link/_weight/App__link_weight_bold.css);
+
 
 /* NotFound block */
 @import url(./components/NotFound/NotFound.css);
@@ -49,3 +53,12 @@
 @import url(../src/components/Menu/__list/Menu__list.css);
 @import url(../src/components/Menu/__list-item/Menu__list-item.css);
 @import url(../src/components/Menu/__close-btn/Menu__close-btn.css);
+
+/* Landing block */
+@import url(../src/components/Landing/Landing.css);
+
+/* Hero block */
+@import url(../src/components/Hero/Hero.css);
+@import url(../src/components/Hero/__text/Hero__text.css);
+@import url(../src/components/Hero/__list/Hero__list.css);
+@import url(../src/components/Hero/__list-item/Hero__list-item.css);

@@ -1,0 +1,15 @@
+.App__link_style_btn-hero {
+  min-width: 82px;
+  display: inline-block;
+  background-color: #E8E8E8;
+  border-radius: 6px;
+  text-align: center;
+  padding: 5px 0;
+}
+
+@media (min-width: 768px) {
+  .App__link_style_btn-hero {
+    padding: 10px 0;
+    min-width: 96px;
+  }
+}
