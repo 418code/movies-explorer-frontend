@@ -56,9 +56,25 @@
 
 /* Landing block */
 @import url(../src/components/Landing/Landing.css);
+@import url(../src/components/Landing/__section/Landing__section.css);
+@import url(../src/components/Landing/__subheader/Landing__subheader.css);
+@import url(../src/components/Landing/__subheader/_position/Landing__subheader_position_top.css);
+@import url(../src/components/Landing/__text/Landing__text.css);
 
 /* Hero block */
 @import url(../src/components/Hero/Hero.css);
 @import url(../src/components/Hero/__text/Hero__text.css);
 @import url(../src/components/Hero/__list/Hero__list.css);
 @import url(../src/components/Hero/__list-item/Hero__list-item.css);
+
+/* About block */
+@import url(../src/components/About/About.css);
+@import url(../src/components/About/__table/About__table.css);
+@import url(../src/components/About/__row/About__row.css);
+@import url(../src/components/About/__row/_font/About__row_font_light.css);
+@import url(../src/components/About/__cell/About__cell.css);
+@import url(../src/components/About/__cell/_color/About__cell_color_beige.css);
+@import url(../src/components/About/__cell/_color/About__cell_color_green.css);
+@import url(../src/components/About/__container/About__container.css);
+@import url(../src/components/About/__col/About__col.css);
+@import url(../src/components/About/__subheader/About__subheader.css);

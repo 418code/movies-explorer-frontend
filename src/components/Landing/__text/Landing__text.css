@@ -1,0 +1,22 @@
+.Landing__text {
+  margin: 0;
+  padding: 0 0 60px;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@media (min-width: 768px) {
+  .Landing__text {
+    font-size: 12px;
+    line-height: 18px;
+    padding: 0 0 93px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Landing__text {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0 0 110px;
+  }
+}

@@ -1,0 +1,15 @@
+.Landing__subheader_position_top {
+    width: 100%;
+    padding: 0 0 28px;
+    border-bottom: 1px solid black;
+    margin-bottom: 60px;
+}
+
+@media (min-width: 768px) {
+  .Landing__subheader_position_top {
+    font-size: 22px;
+    line-height: 27px;
+    padding: 0 0 23px;
+    margin-bottom: 70px;
+  }
+}

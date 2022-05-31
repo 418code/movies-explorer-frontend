@@ -1,0 +1,10 @@
+.About__row_font_light {
+  font: Arial, Helvetica, sans-serif;
+  color: #A0A0A0;
+}
+
+@media (min-width: 1280px) {
+  .About__row_font_light {
+    vertical-align: bottom;
+  }
+}
