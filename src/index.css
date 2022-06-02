@@ -57,9 +57,12 @@
 /* Landing block */
 @import url(../src/components/Landing/Landing.css);
 @import url(../src/components/Landing/__section/Landing__section.css);
+@import url(../src/components/Landing/__section/_padding/Landing__section_padding_less.css);
+@import url(../src/components/Landing/__section/_color/Landing__section_color_beige.css);
 @import url(../src/components/Landing/__subheader/Landing__subheader.css);
 @import url(../src/components/Landing/__subheader/_position/Landing__subheader_position_top.css);
 @import url(../src/components/Landing/__text/Landing__text.css);
+@import url(../src/components/Landing/__header/Landing__header.css);
 
 /* Hero block */
 @import url(../src/components/Hero/Hero.css);
@@ -78,3 +81,9 @@
 @import url(../src/components/About/__container/About__container.css);
 @import url(../src/components/About/__col/About__col.css);
 @import url(../src/components/About/__subheader/About__subheader.css);
+
+/* Tech block */
+@import url(../src/components/Tech/Tech.css);
+@import url(../src/components/Tech/__text/Tech__text.css);
+@import url(../src/components/Tech/__tile/Tech__tile.css);
+@import url(../src/components/Tech/__list/Tech__list.css);

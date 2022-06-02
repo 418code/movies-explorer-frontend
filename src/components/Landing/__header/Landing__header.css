@@ -1,0 +1,25 @@
+.Landing__header {
+  font-weight: 400;
+  max-width: 292px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+  margin: 0;
+  padding: 0 0 24px;
+}
+
+@media (min-width: 768px) {
+  .Landing__header {
+    font-size: 50px;
+    line-height: 58px;
+    max-width: 600px;
+    padding: 10px 0 22px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Landing__header {
+    padding: 20px 0 26px;
+  }
+}

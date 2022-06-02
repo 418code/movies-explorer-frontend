@@ -1,0 +1,17 @@
+.Tech__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 178px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .Tech__list {
+    justify-content: center;
+    width: calc(100% - 20px);
+  }
+}

@@ -1,0 +1,8 @@
+.Landing__section_color_beige {
+}
+
+@media (min-width: 768px) {
+  .Landing__section_color_beige {
+    background-color: #F5F5F5;
+  }
+}
