@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Landing from '../Landing/Landing';
+import Movies from '../Movies/Movies';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <div className="App body__element">
         <Routes>
           <Route path="/" element={<Landing />}/>
+          <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} />}/>
           <Route path="header" element={<Header isLoggedIn={isLoggedIn} />}/>
           <Route path="footer" element={<Footer />}/>
           <Route path="menu" element={<Menu />}/>

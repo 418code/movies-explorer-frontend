@@ -103,3 +103,6 @@
 @import url(../src/components/Student/__list/_size/Student__list_size_small.css);
 @import url(../src/components/Student/__list/_size/Student__list_size_large.css);
 @import url(../src/components/Student/__link/Student__link.css);
+
+/* Movies block */
+@import url(../src/components/Movies/Movies.css);
