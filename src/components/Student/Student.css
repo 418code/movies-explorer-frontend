@@ -1,0 +1,15 @@
+.Student {
+  padding: 70px 14px 86px;
+}
+
+@media (min-width: 768px) {
+  .Student {
+    padding: 90px 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Student {
+    padding: 110px 70px 125px;
+  }
+}

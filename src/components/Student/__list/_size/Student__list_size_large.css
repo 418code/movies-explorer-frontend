@@ -1,0 +1,20 @@
+.Student__list_size_large {
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.04em;
+}
+
+@media (min-width: 768px) {
+  .Student__list_size_large {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Student__list_size_large {
+    font-size: 30px;
+  }
+}

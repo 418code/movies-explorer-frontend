@@ -23,6 +23,7 @@
 @import url(./components/App/__link/_size/App__link_size_pmed.css);
 @import url(./components/App/__link/_size/App__link_size_large.css);
 @import url(./components/App/__link/_weight/App__link_weight_bold.css);
+@import url(../src/components/App/__list/App__list.css);
 
 
 /* NotFound block */
@@ -87,3 +88,18 @@
 @import url(../src/components/Tech/__text/Tech__text.css);
 @import url(../src/components/Tech/__tile/Tech__tile.css);
 @import url(../src/components/Tech/__list/Tech__list.css);
+
+@import url(../src/components/Student/Student.css);
+@import url(../src/components/Student/__pic/Student__pic.css);
+@import url(../src/components/Student/__header/Student__header.css);
+@import url(../src/components/Student/__text/Student__text.css);
+@import url(../src/components/Student/__text/_weight/Student__text_weight_bold.css);
+@import url(../src/components/Student/__subheader/Student__subheader.css);
+@import url(../src/components/Student/__article/Student__article.css);
+@import url(../src/components/Student/__miniheader/Student__miniheader.css);
+@import url(../src/components/Student/__list/Student__list.css);
+@import url(../src/components/Student/__list-item/Student__list-item.css);
+@import url(../src/components/Student/__list/_vertical/Student__list_vertical.css);
+@import url(../src/components/Student/__list/_size/Student__list_size_small.css);
+@import url(../src/components/Student/__list/_size/Student__list_size_large.css);
+@import url(../src/components/Student/__link/Student__link.css);

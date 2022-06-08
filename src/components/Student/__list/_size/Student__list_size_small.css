@@ -1,0 +1,12 @@
+.Student__list_size_small {
+  gap: 26px;
+  font-size: 14px;
+  line-height: 17px;
+  grid-area: social;
+}
+
+@media (min-width: 768px) {
+  .Student__list_size_small {
+    gap: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+.Student__miniheader {
+  padding: 0 0 40px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #A0A0A0;
+}
+
+@media (min-width: 768px) {
+  .Student__miniheader {
+    font-size: 18px;
+    padding: 0 0 50px;
+  }
+}

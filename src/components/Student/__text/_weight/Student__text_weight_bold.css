@@ -1,0 +1,11 @@
+.Student__text_weight_bold {
+  font-weight: 500;
+  padding: 0 0 20px;
+  grid-area: subheader;
+}
+
+@media (min-width: 1280px) {
+  .Student__text_weight_bold {
+    font-size: 18px;
+  }
+}

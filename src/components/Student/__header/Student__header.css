@@ -1,0 +1,19 @@
+.Student__header {
+  padding: 0 0 20px;
+  text-align: left;
+  grid-area: header;
+}
+
+@media (min-width: 768px) {
+  .Student__header {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Student__header {
+    font-size: 50px;
+    line-height: 58px;
+  }
+}
