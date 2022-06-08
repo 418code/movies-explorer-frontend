@@ -7,3 +7,15 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (min-width: 768px) {
+  .Footer {
+    min-height: 172px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Footer {
+    background: #FAFAFA;
+  }
+}
