@@ -106,3 +106,15 @@
 
 /* Movies block */
 @import url(../src/components/Movies/Movies.css);
+
+/* Search block */
+@import url(../src/components/Search/Search.css);
+@import url(../src/components/Search/__form/Search__form.css);
+@import url(../src/components/Search/__input/Search__input.css);
+@import url(../src/components/Search/__button/Search__button.css);
+@import url(../src/components/Search/__container/Search__container.css);
+@import url(../src/components/Search/__checkbox/Search__checkbox.css);
+@import url(../src/components/Search/__label-text/Search__label-text.css);
+@import url(../src/components/Search/__slider/Search__slider.css);
+@import url(../src/components/Search/__label/Search__label.css);
+@import url(../src/components/Search/__slider-box/Search__slider-box.css);

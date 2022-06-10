@@ -1,0 +1,9 @@
+.Search__checkbox {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.Search__checkbox:checked + .Search__slider:before {
+  transform: translateX(16px);
+}

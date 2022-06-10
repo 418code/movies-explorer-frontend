@@ -1,0 +1,28 @@
+.Search__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 72px;
+  background-color: #f9f9f9;
+  border-radius: 9px;
+  border: none;
+  outline: none;
+  padding: 0 73px 0 19px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.Search__input::placeholder {
+  min-height: 22px;
+  color: #a0a0a0;
+  padding: 25px 0;
+}
+
+@media (min-width: 768px) {
+  .Search__input {
+    padding: 0 73px 0 63px;
+    background: no-repeat center url("../../../images/search_icon.svg"), #f9f9f9;
+    background-position: left 30px top 30px;
+    font-size: 18px;
+  }
+}
