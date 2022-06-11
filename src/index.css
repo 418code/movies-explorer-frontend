@@ -118,3 +118,7 @@
 @import url(../src/components/Search/__slider/Search__slider.css);
 @import url(../src/components/Search/__label/Search__label.css);
 @import url(../src/components/Search/__slider-box/Search__slider-box.css);
+
+/* CardList block */
+@import url(../src/components/CardList/CardList.css);
+
