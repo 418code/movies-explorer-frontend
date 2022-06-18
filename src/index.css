@@ -119,6 +119,15 @@
 @import url(../src/components/Search/__label/Search__label.css);
 @import url(../src/components/Search/__slider-box/Search__slider-box.css);
 
-/* CardList block */
-@import url(../src/components/CardList/CardList.css);
+/* Cards block */
+@import url(../src/components/Cards/Cards.css);
+@import url(../src/components/Cards/__list/Cards__list.css);
 
+/* Card block */
+@import url(../src/components/Card/Card.css);
+@import url(../src/components/Card/__header/Card__header.css);
+@import url(../src/components/Card/__time/Card__time.css);
+@import url(../src/components/Card/__button/Card__button.css);
+@import url(../src/components/Card/__button/_type/Card__button_type_set.css);
+@import url(../src/components/Card/__button/_type/Card__button_type_close.css);
+@import url(../src/components/Card/__img/Card__img.css);

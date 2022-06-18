@@ -1,0 +1,9 @@
+.Card__time {
+  grid-row-start: 4;
+  grid-column: 2;
+  font-size: 11px;
+  line-height: 13px;
+  color: #A0A0A0;
+  margin: 0;
+  padding: 0;
+}

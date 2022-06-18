@@ -1,0 +1,22 @@
+.Card__img {
+  height: 168px;
+  width: 100%;
+  grid-row: 5;
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+
+@media (min-width: 768px)
+{
+  .Card__img {
+    height: 190px;
+  }
+}
+
+@media (min-width: 1280px)
+{
+  .Card__img {
+    height: 203px;
+  }
+}
