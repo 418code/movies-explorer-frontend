@@ -1,0 +1,19 @@
+.Loader__button {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  width: 240px;
+  height: 36px;
+  border: 1px solid #e8e8e8;
+  background-color: white;
+  margin: 50px 0 0;
+  padding: 0;
+  border-radius: 6px;
+}
+
+@media (min-width: 768px)
+{
+  .Loader__button {
+    width: 320px;
+  }
+}

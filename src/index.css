@@ -131,3 +131,7 @@
 @import url(../src/components/Card/__button/_type/Card__button_type_set.css);
 @import url(../src/components/Card/__button/_type/Card__button_type_close.css);
 @import url(../src/components/Card/__img/Card__img.css);
+
+/* Loader block */
+@import url(../src/components/Loader/Loader.css);
+@import url(../src/components/Loader/__button/Loader__button.css);
