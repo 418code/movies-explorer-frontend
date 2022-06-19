@@ -1,3 +1,11 @@
 .Footer__text_position_bottom {
-  padding: 20px 0;
+  padding: 0;
+}
+
+
+@media (min-width: 768px)
+{
+  .Footer__text_position_bottom {
+    padding: 20px 0;
+  }
 }
