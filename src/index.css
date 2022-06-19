@@ -135,3 +135,7 @@
 /* Loader block */
 @import url(../src/components/Loader/Loader.css);
 @import url(../src/components/Loader/__button/Loader__button.css);
+
+/* SavedMovies block */
+@import url(../src/components/SavedMovies/SavedMovies.css);
+@import url(../src/components/SavedMovies/__divider/SavedMovies__divider.css);
