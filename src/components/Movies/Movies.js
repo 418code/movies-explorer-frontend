@@ -4,10 +4,10 @@ import Search from '../Search/Search';
 import Cards from '../Cards/Cards';
 import Loader from '../Loader/Loader';
 
-export default function Movies(props) {
+export default function Movies() {
   return (
     <>
-      <Header isLoggedIn={props.isLoggedIn}  />
+      <Header isLoggedIn={true}  />
       <main className="Movies">
         <Search />
         <Cards />

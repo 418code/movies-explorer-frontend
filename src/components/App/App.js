@@ -19,7 +19,7 @@ function App() {
       <div className="App body__element">
         <Routes>
           <Route path="/" element={<Landing />}/>
-          <Route path="/movies" element={<Movies isLoggedIn={isLoggedIn} />}/>
+          <Route path="/movies" element={<Movies />}/>
           <Route path="header" element={<Header isLoggedIn={isLoggedIn} />}/>
           <Route path="footer" element={<Footer />}/>
           <Route path="menu" element={<Menu />}/>
