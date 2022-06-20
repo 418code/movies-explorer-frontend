@@ -24,6 +24,7 @@
 @import url(./components/App/__link/_size/App__link_size_large.css);
 @import url(./components/App/__link/_weight/App__link_weight_bold.css);
 @import url(../src/components/App/__list/App__list.css);
+@import url(../src/components/App/__header/App__header.css);
 
 
 /* NotFound block */
@@ -139,3 +140,14 @@
 /* SavedMovies block */
 @import url(../src/components/SavedMovies/SavedMovies.css);
 @import url(../src/components/SavedMovies/__divider/SavedMovies__divider.css);
+
+/* Profile block */
+@import url(../src/components/Profile/Profile.css);
+@import url(../src/components/Profile/__table/Profile__table.css);
+@import url(../src/components/Profile/__row/Profile__row.css);
+@import url(../src/components/Profile/__row/_position/Profile__row_position_top.css);
+@import url(../src/components/Profile/__cell/Profile__cell.css);
+@import url(../src/components/Profile/__header/Profile__header.css);
+@import url(../src/components/Profile/__list/Profile__list.css);
+@import url(../src/components/Profile/__link/Profile__link.css);
+@import url(../src/components/Profile/__link/_type/Profile__link_type_bold.css);

@@ -1,0 +1,7 @@
+.Profile__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 31px;
+}
