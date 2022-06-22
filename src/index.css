@@ -151,3 +151,17 @@
 @import url(../src/components/Profile/__list/Profile__list.css);
 @import url(../src/components/Profile/__link/Profile__link.css);
 @import url(../src/components/Profile/__link/_type/Profile__link_type_bold.css);
+
+/* EnterForm block */
+@import url(../src/components/EnterForm/EnterForm.css);
+@import url(../src/components/EnterForm/__header/EnterForm__header.css);
+@import url(../src/components/EnterForm/__main/EnterForm__main.css);
+@import url(../src/components/EnterForm/__form/EnterForm__form.css);
+@import url(../src/components/EnterForm/__label/EnterForm__label.css);
+@import url(../src/components/EnterForm/__input/EnterForm__input.css);
+@import url(../src/components/EnterForm/__input/_type/EnterForm__input_type_error.css);
+@import url(../src/components/EnterForm/__button/EnterForm__button.css);
+@import url(../src/components/EnterForm/__fields/EnterForm__fields.css);
+@import url(../src/components/EnterForm/__text/EnterForm__text.css);
+@import url(../src/components/EnterForm/__input-error/EnterForm__input-error.css);
+@import url(../src/components/EnterForm/__input-error/_active/EnterForm__input-error_active.css);

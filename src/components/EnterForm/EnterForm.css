@@ -1,0 +1,23 @@
+.EnterForm {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 253px 1fr .22fr;
+  min-width: 260px;
+  max-width: 396px;
+  width: 81.25%;
+  height: 100%;
+}
+
+@media (min-width: 768px)
+{
+  .EnterForm {
+    grid-template-rows: .49fr 147px .88fr .15fr;
+  }
+}
+
+@media (min-width: 1280px)
+{
+  .EnterForm {
+    grid-template-rows: .1fr 147px .58fr;
+  }
+}
