@@ -13,19 +13,19 @@ export default function Header(props) {
                                   <Link to="/movies" className="App__link App__link_position_header App__link_size_pmed">Фильмы</Link>
                                 </li>
                                 <li className="Header__list-item" key="saved-movies">
-                                  <Link to="/saved" className="App__link App__link_size_pmed">Сохранённые фильмы</Link>
+                                  <Link to="/saved-movies" className="App__link App__link_size_pmed">Сохранённые фильмы</Link>
                                 </li>
                               </ul>
-                              <Link to="/account" className="App__link App__link_position_header App__link_style_btn-rnd App__link_size_med">Аккаунт</Link>
+                              <Link to="/profile" className="App__link App__link_position_header App__link_style_btn-rnd App__link_size_med">Аккаунт</Link>
                             </nav>
                           </>
                         :
                           <ul className="Header__list">
                             <li className="Header__list-item" key="sign-up">
-                              <Link to="/sign-up" className="App__link App__link_position_header">Регистрация</Link>
+                              <Link to="/signup" className="App__link App__link_position_header">Регистрация</Link>
                             </li>
                             <li className="Header__list-item" key="sign-in">
-                              <Link to="/sign-in" className="App__link App__link_position_header App__link_style_btn">Войти</Link>
+                              <Link to="/signin" className="App__link App__link_position_header App__link_style_btn">Войти</Link>
                             </li>
                           </ul>}
     </header>
