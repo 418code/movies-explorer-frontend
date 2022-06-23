@@ -5,10 +5,10 @@ import Cards from '../Cards/Cards';
 import Loader from '../Loader/Loader';
 import Preloader from '../Preloader/Preloader';
 
-export default function Movies() {
+export default function Movies(props) {
   return (
     <>
-      <Header isLoggedIn={true}  />
+      <Header isLoggedIn={true} menuClickHandler={props.menuClickHandler}  />
       <main className="Movies">
         <Search />
         <Cards />

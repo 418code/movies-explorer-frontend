@@ -1,9 +1,10 @@
 .Menu {
-  display: flex;
+  position: fixed;
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
-  min-height: 100vh;
-  z-index: 13;
+  min-height: 100%;
+  z-index: 42;
   background-color: rgba(0, 0, 0, 0.3);
+  display: none;
 }

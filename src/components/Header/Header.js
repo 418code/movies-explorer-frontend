@@ -6,7 +6,7 @@ export default function Header(props) {
     <header className="Header">
       <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
       {props.isLoggedIn ? <>
-                            <button className="Header__menu-btn"></button>
+                            <button onClick={props.menuClickHandler} className="Header__menu-btn"></button>
                             <nav className="Header__nav">
                               <ul className="Header__list">
                                 <li className="Header__list-item Header__list-item_space_close" key="movies">

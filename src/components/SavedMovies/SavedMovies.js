@@ -3,10 +3,10 @@ import Footer from '../Footer/Footer';
 import Search from '../Search/Search';
 import Cards from '../Cards/Cards';
 
-export default function SavedMovies () {
+export default function SavedMovies (props) {
   return (
     <>
-    <Header isLoggedIn={true}  />
+    <Header isLoggedIn={true} menuClickHandler={props.menuClickHandler} />
     <main className="SavedMovies">
       <Search />
       <Cards />

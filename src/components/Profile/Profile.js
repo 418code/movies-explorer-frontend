@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 export default function Profile (props) {
   return (
     <>
-      <Header isLoggedIn={true} />
+      <Header isLoggedIn={true} menuClickHandler={props.menuClickHandler} />
       <main className="Profile">
         <h1 className="App__header Profile__header">Привет, Виталий!</h1>
         <table className="Profile__table">

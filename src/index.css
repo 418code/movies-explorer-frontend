@@ -53,6 +53,7 @@
 
 /* Menu block */
 @import url(../src/components/Menu/Menu.css);
+@import url(../src/components/Menu/_visible/Menu_visible.css);
 @import url(../src/components/Menu/__nav/Menu__nav.css);
 @import url(../src/components/Menu/__list/Menu__list.css);
 @import url(../src/components/Menu/__list-item/Menu__list-item.css);
