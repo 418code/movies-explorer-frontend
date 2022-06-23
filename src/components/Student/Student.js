@@ -23,30 +23,30 @@ export default function Student() {
         <li className="Student__list-item">
           <ul className="App__list Student__list Student__list_size_large">
             <li>
-              <a href="https://github.com/418code/how-to-learn" className="App__link">Статичный сайт</a>
+              <a href="https://github.com/418code/how-to-learn" target="_blank" rel="noreferrer" className="App__link">Статичный сайт</a>
             </li>
             <li>
-              <a href="https://github.com/418code/how-to-learn" className="App__link Student__link"></a>
-            </li>
-          </ul>
-        </li>
-        <li className="Student__list-item">
-          <ul className="App__list Student__list Student__list_size_large">
-            <li>
-              <a href="https://github.com/418code/russian-travel" className="App__link">Адаптивный сайт</a>
-            </li>
-            <li>
-              <a href="https://github.com/418code/russian-travel" className="App__link Student__link"></a>
+              <a href="https://github.com/418code/how-to-learn" target="_blank" rel="noreferrer" className="App__link Student__link"></a>
             </li>
           </ul>
         </li>
         <li className="Student__list-item">
           <ul className="App__list Student__list Student__list_size_large">
             <li>
-              <a href="https://github.com/418code/react-mesto-api-full" className="App__link">Одностраничное приложение</a>
+              <a href="https://github.com/418code/russian-travel" target="_blank" rel="noreferrer" className="App__link">Адаптивный сайт</a>
             </li>
             <li>
-              <a href="https://github.com/418code/react-mesto-api-full" className="App__link Student__link"></a>
+              <a href="https://github.com/418code/russian-travel" target="_blank" rel="noreferrer" className="App__link Student__link"></a>
+            </li>
+          </ul>
+        </li>
+        <li className="Student__list-item">
+          <ul className="App__list Student__list Student__list_size_large">
+            <li>
+              <a href="https://github.com/418code/react-mesto-api-full" target="_blank" rel="noreferrer" className="App__link">Одностраничное приложение</a>
+            </li>
+            <li>
+              <a href="https://github.com/418code/react-mesto-api-full" target="_blank" rel="noreferrer" className="App__link Student__link"></a>
             </li>
           </ul>
         </li>
