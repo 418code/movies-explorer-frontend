@@ -31,6 +31,7 @@
 @import url(./components/NotFound/NotFound.css);
 @import url(./components/NotFound/__header/NotFound__header.css);
 @import url(./components/NotFound/__message/NotFound__message.css);
+@import url(../src/components/NotFound/__button/NotFound__button.css);
 
 /* Footer block */
 @import url(../src/components/Footer/Footer.css);
