@@ -11,7 +11,7 @@ export default function Student() {
         <p className="Landing__text Student__text">Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
         <ul className="App__list Student__list Student__list_size_small">
           <li>
-            <a href="#" className="App__link App__link_weight_bold">Facebook</a>
+            <a href="http://facebook.com" className="App__link App__link_weight_bold">Facebook</a>
           </li>
           <li>
             <a href="https://github.com/418code/" className="App__link App__link_weight_bold">Github</a>
