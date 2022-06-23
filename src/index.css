@@ -42,6 +42,7 @@
 @import url(../src/components/Footer/__list-item/Footer__list-item.css);
 @import url(../src/components/Footer/__container/Footer__container.css);
 
+/* Header block */
 @import url(../src/components/Header/Header.css);
 @import url(../src/components/Header/__list/Header__list.css);
 @import url(../src/components/Header/__list-item/Header__list-item.css);
@@ -91,6 +92,7 @@
 @import url(../src/components/Tech/__tile/Tech__tile.css);
 @import url(../src/components/Tech/__list/Tech__list.css);
 
+/* Student block */
 @import url(../src/components/Student/Student.css);
 @import url(../src/components/Student/__pic/Student__pic.css);
 @import url(../src/components/Student/__header/Student__header.css);
