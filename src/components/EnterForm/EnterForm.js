@@ -8,7 +8,7 @@ export default function EnterForm(props) {
         <h1 className="App__header">{props.formHeader}</h1>
       </header>
       <main className="EnterForm__main">
-        <form className="EnterForm__form">
+        <form className="EnterForm__form" onSubmit={props.onSubmit}>
           {props.children}
         </form>
       </main>
