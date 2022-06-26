@@ -8,6 +8,7 @@
   background: no-repeat center url("../../../images/search_btn.svg");
   background-size: contain;
   border: none;
+  cursor: pointer;
 }
 
 @media (min-width: 1280px)

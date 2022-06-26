@@ -8,7 +8,9 @@ export default function Header(props) {
 
   return (
     <header className="Header">
-      <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
+      <Link to="/">
+        <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
+      </Link>
       {isLoggedIn ?
                           <>
                             <button onClick={props.menuClickHandler} className="Header__menu-btn"></button>

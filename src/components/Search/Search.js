@@ -3,8 +3,8 @@ export default function Search() {
     <section className="Search">
       <form action="" className="Search__form">
         <div className="Search__container">
-          <input type="text" placeholder="Фильм" className="Search__input"/>
-          <button className="Search__button" type="button"></button>
+          <input type="text" placeholder="Фильм" className="Search__input" required/>
+          <button className="Search__button"></button>
         </div>
         <div className="Search__label">
           <label htmlFor="switch" className="Search__slider-box">
