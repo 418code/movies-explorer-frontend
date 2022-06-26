@@ -4,11 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
+import AuthWrapper from './components/AuthWrapper/AuthWrapper';
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthWrapper>
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
+      </AuthWrapper>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

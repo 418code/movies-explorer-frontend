@@ -20,6 +20,7 @@ class Api {
     const fetchObject = {
       method: method,
       headers: this._headers,
+      credentials: 'include',
     }
     if (method === 'POST' || method === 'PATCH')
       fetchObject['body'] = JSON.stringify(body);
@@ -37,7 +38,32 @@ class Api {
    * @returns {Promise}
    */
   register( {name, email, password} ) {
-    return this._fetchPath('signup', 'POST', {name: name, email: email, password: password}, false);
+    return this._fetchPath('signup', 'POST', {name: name, email: email, password: password});
+  }
+
+  /**
+   * Signs in the user to the server
+   * @param {Object} object - {email, password}
+   * @returns {Promise}
+   */
+  signIn({ email, password }) {
+    return this._fetchPath('signin', 'POST', {email: email, password: password});
+  }
+
+  /**
+   * Clears httponly cookie
+   * @returns {Promise}
+   */
+  signOut() {
+    return this._fetchPath('signout', 'POST');
+  }
+
+  /**
+   * Gets user profile information
+   * @returns {Promise}
+   */
+  getUserInfo() {
+    return this._fetchPath('users/me', 'GET');
   }
 }
 

@@ -3,4 +3,9 @@ const apiConfig = {
   appJSONType: 'application/json'
 };
 
-export {apiConfig};
+function isTrue(value) {
+  return value === 'true';
+}
+
+
+export { apiConfig, isTrue };

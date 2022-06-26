@@ -5,10 +5,10 @@ import About from '../About/About';
 import Tech from '../Tech/Tech';
 import Student from '../Student/Student';
 
-export default function Landing() {
+export default function Landing(props) {
   return (
     <>
-      <Header isLoggedIn={false} />
+      <Header menuClickHandler={props.menuClickHandler} />
       <main className="Landing">
         <Hero />
         <About />
