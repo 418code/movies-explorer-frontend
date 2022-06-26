@@ -8,14 +8,16 @@ export default function Profile (props) {
       <main className="Profile">
         <h1 className="App__header Profile__header">Привет, Виталий!</h1>
         <table className="Profile__table">
-          <tr className="Profile__row Profile__row_position_top">
-            <td className="Profile__cell">Имя</td>
-            <td>Виталий</td>
-          </tr>
-          <tr className="Profile__row">
-            <td className="Profile__cell">E-mail</td>
-            <td>pochta@yandex.ru</td>
-          </tr>
+          <tbody>
+            <tr className="Profile__row Profile__row_position_top">
+              <td className="Profile__cell">Имя</td>
+              <td>Виталий</td>
+            </tr>
+            <tr className="Profile__row">
+              <td className="Profile__cell">E-mail</td>
+              <td>pochta@yandex.ru</td>
+            </tr>
+          </tbody>
         </table>
         <ul className="App__list Profile__list">
           <li key="edit">
