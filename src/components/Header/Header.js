@@ -4,7 +4,9 @@ import logo from '../../images/logo.svg';
 export default function Header(props) {
   return (
     <header className="Header">
-      <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
+      <Link to="/">
+        <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
+      </Link>
       {props.isLoggedIn ? <>
                             <button onClick={props.menuClickHandler} className="Header__menu-btn"></button>
                             <nav className="Header__nav">
