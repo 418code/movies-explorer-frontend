@@ -23,14 +23,16 @@ export default function About() {
           <col className="About__col"/>
           <col/>
         </colgroup>
-        <tr className="About__row">
-          <td className="About__cell About__cell_color_green">1 неделя</td>
-          <td className="About__cell About__cell_color_beige">4 недели</td>
-        </tr>
-        <tr className="About__row About__row_font_light">
-          <td className="About__cell">Back-end</td>
-          <td className="About__cell">Front-end</td>
-        </tr>
+        <tbody>
+          <tr className="About__row">
+            <td className="About__cell About__cell_color_green">1 неделя</td>
+            <td className="About__cell About__cell_color_beige">4 недели</td>
+          </tr>
+          <tr className="About__row About__row_font_light">
+            <td className="About__cell">Back-end</td>
+            <td className="About__cell">Front-end</td>
+          </tr>
+        </tbody>
       </table>
     </section>
   );
