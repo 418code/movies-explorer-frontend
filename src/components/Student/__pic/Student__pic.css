@@ -1,0 +1,23 @@
+.Student__pic {
+  width: 292px;
+  height: 352px;
+  padding: 0 0 40px;
+  border-radius: 10px;
+  grid-area: pic;
+}
+
+@media (min-width: 768px) {
+  .Student__pic {
+    width: 255px;
+    height: 307px;
+    padding: 0;
+    justify-self: end;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Student__pic {
+    width: 270px;
+    height: 327px;
+  }
+}

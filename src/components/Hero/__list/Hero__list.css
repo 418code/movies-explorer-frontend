@@ -1,0 +1,15 @@
+.Hero__list {
+  min-width: 258px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .Hero__list {
+    min-width: 309px;
+  }
+}

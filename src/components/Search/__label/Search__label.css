@@ -1,0 +1,40 @@
+.Search__label {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 13px;
+  padding: 45px 0 44px;
+}
+
+.Search__label:before {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+
+@media (min-width: 768px) {
+  .Search__label {
+    background-color: #f9f9f9;
+    padding: 26px 20px 26px 19px;
+    gap: 15px;
+  }
+
+  .Search__label:before {
+    height: 40px;
+    width: 1px;
+    left: 0;
+    top: 16px;
+    background-color: #cbcbcb;
+  }
+}
+
+@media (min-width: 1280px)
+{
+  .Search__label {
+    padding: 27px 30px 27px 29px;
+    gap: 14px;
+  }
+}

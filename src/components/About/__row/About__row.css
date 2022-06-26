@@ -1,0 +1,13 @@
+.About__row {
+  font-size: 11px;
+  line-height: 13px;
+  height: 35px;
+}
+
+@media (min-width: 768px) {
+  .About__row {
+    font-size: 14px;
+    line-height: 17px;
+    height: 36px;
+  }
+}

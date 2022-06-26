@@ -1,0 +1,9 @@
+.Card__button {
+  width: 30px;
+  height: 30px;
+  background: no-repeat center url("../../../images/card_btn_reg.svg");
+  background-size: contain;
+  border: none;
+  grid-row-start: 3;
+  grid-column: 3;
+}

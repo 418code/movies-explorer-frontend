@@ -1,0 +1,11 @@
+.Search__label-text {
+  font-size: 11px;
+  line-height: 18px;
+}
+
+@media (min-width: 768px)
+{
+  .Search__label-text {
+    font-size: 13px;
+  }
+}

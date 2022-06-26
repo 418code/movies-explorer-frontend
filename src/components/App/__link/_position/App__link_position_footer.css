@@ -1,0 +1,12 @@
+.App__link_position_footer {
+  display: block;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+@media (min-width: 768px) {
+  .App__link_position_footer {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}

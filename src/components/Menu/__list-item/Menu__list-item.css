@@ -1,0 +1,15 @@
+.Menu__list-item {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 24px 0;
+}
+
+.Menu__list-item:last-of-type {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .Menu__list-item {
+    padding: 0 0 28px 0;
+  }
+}

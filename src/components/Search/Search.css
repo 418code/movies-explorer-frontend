@@ -1,0 +1,22 @@
+.Search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 80px 10px 10px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .Search {
+    padding: 80px 30px 10px;
+  }
+}
+
+
+@media (min-width: 1280px)
+{
+  .Search {
+    padding: 70px 70px 10px;
+  }
+}

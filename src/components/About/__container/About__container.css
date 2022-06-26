@@ -1,0 +1,16 @@
+.About__container {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .About__container {
+    columns: 2;
+    column-gap: 30px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .About__container {
+    column-gap: 40px;
+  }
+}

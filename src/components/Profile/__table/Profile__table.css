@@ -1,0 +1,15 @@
+.Profile__table {
+  width: 260px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  border-collapse: collapse;
+  grid-row: 2;
+}
+
+@media (min-width: 768px)
+{
+  .Profile__table {
+    width: 412px;
+  }
+}

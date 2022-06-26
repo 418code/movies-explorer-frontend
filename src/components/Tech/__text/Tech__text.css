@@ -1,0 +1,19 @@
+.Tech__text {
+  max-width: 292px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  padding: 0 0 49px;
+}
+
+@media (min-width: 768px) {
+  .Tech__text {
+    max-width: 460px;
+    padding: 0 0 83px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Tech__text {
+    padding: 0 0 100px;
+  }
+}

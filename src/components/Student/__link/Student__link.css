@@ -1,0 +1,22 @@
+.Student__link {
+  display: block;
+  width: 10px;
+  height: 20px;
+  background: no-repeat center url("../../../images/arrow.svg");
+  background-size: contain;
+  margin: 2px 4px 4px;
+}
+
+@media (min-width: 768px) {
+  .Student__link {
+    width: 17px;
+    margin: 6px 6px 4px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Student__link {
+    width: 18px;
+    height: 41px;
+  }
+}

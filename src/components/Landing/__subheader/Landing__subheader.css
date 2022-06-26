@@ -1,0 +1,23 @@
+.Landing__subheader {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.04em;
+  margin: 0;
+  padding: 0 0 16px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .Landing__subheader {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 0 0 22px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .Landing__subheader {
+    padding: 0 0 26px;
+  }
+}
