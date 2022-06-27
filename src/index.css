@@ -114,6 +114,7 @@
 
 /* Preloader block */
 @import url(../src/components/Preloader/Preloader.css);
+@import url(../src/components/Preloader/_visible/Preloader_visible.css);
 @import url(../src/components/Preloader/__container/Preloader__container.css);
 @import url(../src/components/Preloader/__round/Preloader__round.css);
 

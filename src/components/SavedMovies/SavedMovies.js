@@ -8,7 +8,7 @@ export default function SavedMovies (props) {
     <>
     <Header isLoggedIn={true} menuClickHandler={props.menuClickHandler} />
     <main className="SavedMovies">
-      <Search />
+      <Search handleSearch={props.handleSearch} />
       <Cards />
       <section className="SavedMovies__divider">
       </section>
