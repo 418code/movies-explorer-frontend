@@ -1,4 +1,4 @@
-import { apiConfig } from './utils';
+import { apiConfig, cardFields } from './utils';
 
 class Api {
   constructor(options) {
@@ -64,6 +64,32 @@ class Api {
    */
   getUserInfo() {
     return this._fetchPath('users/me', 'GET');
+  }
+
+  /**
+   * Get all saved movies
+   * @returns {Promise}
+   */
+  loadSavedMovies() {
+    return this._fetchPath('movies', 'GET');
+  }
+
+  /**
+   * Saves a card
+   * @param {Object} card
+   * @returns {Promise}
+   */
+  saveCard(card) {
+    return this._fetchPath('movies', 'POST', card);
+  }
+
+  /**
+   * Deletes a card
+   * @param {String} id
+   * @returns {Promise}
+   */
+  deleteCard(id) {
+    return this._fetchPath(`movies/${id}`, 'DELETE');
   }
 }
 

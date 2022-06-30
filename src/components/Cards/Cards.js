@@ -1,15 +1,15 @@
 import Card from "../Card/Card";
-import cardPic from "../../images/card.png";
+import { isEmpty } from '../../utils/utils';
 
-export default function Cards() {
+export default function Cards(props) {
   return (
-    <section className="Cards">
+    <section className={`Cards ${props.visible ? 'Cards_visible' : ''}`}>
       <ul className="Cards__list">
-          <Card header="33 слова о дизайне" time="1ч 47м" key="card1" img={cardPic} />
-          <Card header="33 слова о дизайне" time="1ч 47м" key="card2" img={cardPic} type="close" />
-          <Card header="33 слова о дизайне" time="1ч 47м" key="card3" img={cardPic} type="set" />
-          <Card header="33 слова о дизайне" time="1ч 47м" key="card4" img={cardPic} />
-          <Card header="33 слова о дизайне" time="1ч 47м" key="card5" img={cardPic} type="set" />
+          {!isEmpty(props.cards)
+            ? props.cards.map(card =>
+              <Card key={card.movieId} card={card} handleBtnClick={props.handleBtnClick}
+               btnType={props.savedMoviesFlags[card.movieId] ? props.btnType : ''} />)
+            : ''}
       </ul>
     </section>
   );

@@ -132,6 +132,7 @@
 
 /* Cards block */
 @import url(../src/components/Cards/Cards.css);
+@import url(../src/components/Cards/_visible/Cards_visible.css);
 @import url(../src/components/Cards/__list/Cards__list.css);
 
 /* Card block */
@@ -142,6 +143,7 @@
 @import url(../src/components/Card/__button/_type/Card__button_type_set.css);
 @import url(../src/components/Card/__button/_type/Card__button_type_close.css);
 @import url(../src/components/Card/__img/Card__img.css);
+@import url(../src/components/Card/__link/Card__link.css);
 
 /* Loader block */
 @import url(../src/components/Loader/Loader.css);

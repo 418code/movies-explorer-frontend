@@ -14,7 +14,7 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { tokenize } from '../../utils/utils';
+import { tokenize, transformData, initSaved, syncSavedMovies, isEmpty, filterMovies } from '../../utils/utils';
 
 function App() {
 
@@ -24,19 +24,15 @@ function App() {
   const { isLoggedIn, setupIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [allMovies, setAllMovies] = useState({});
-  const [currentSearch, setCurrentSearch] = useState({});
+  const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem('allMovies')) || []);
+  const [savedMovies, setSavedMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')) || []);
+  const [savedMoviesFlags, setSavedMoviesFlags] = useState(JSON.parse(localStorage.getItem('savedMoviesFlags')) || {});
+  const [currentSearch, setCurrentSearch] = useState([]);
 
-  //preload movie list from api
+  //delete movie from savedMovies on flag change
   useEffect(() => {
-    moviesApi()
-    .then(data => {
-      setAllMovies(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  }, [allMovies]);
+    syncSavedMovies(savedMovies, savedMoviesFlags);
+  }, [savedMoviesFlags, savedMovies]);
 
   const menuClickHandler = () => {
     setIsMenuOpen(current => !current);
@@ -54,23 +50,46 @@ function App() {
     .then(data => {
       setupIsLoggedIn(true);
       navigate('/movies');
+    })
+    .catch(err => {
+      console.log(err);
     });
   };
 
   const onLogout = () => {
     setupIsLoggedIn(false);
+    localStorage.removeItem('allMovies');
+    localStorage.removeItem('savedMovies');
+    localStorage.removeItem('savedMoviesFlags');
   };
 
   const handleSearch = (searchString, short, changeLoaderVisibility) => {
-    const tokens = tokenize(searchString);
-    const checker = value =>
-      tokens.some(element => value.includes(element));
 
-    setCurrentSearch(allMovies.filter(
-      obj => ((tokenize(obj.nameRU).filter(checker).length > 0)
-       || (tokenize(obj.nameEN).filter(checker).length > 0))
-       && (short ? (parseInt(obj.duration) <= 40) : true)
-    ));
+    //get movies if n/a
+    if(isEmpty(allMovies) || isEmpty(savedMovies) || isEmpty(savedMoviesFlags)) {
+      Promise.all([moviesApi(), api.loadSavedMovies()])
+      .then(([movies, saved]) => {
+        const allMoviesPrep = transformData(movies);
+        localStorage.setItem('allMovies', JSON.stringify(allMoviesPrep));
+        setAllMovies(allMoviesPrep);
+
+        localStorage.setItem('savedMovies', JSON.stringify(saved));
+        setSavedMovies(saved);
+
+        return [allMoviesPrep, saved]
+      })
+      .then(([movies, saved]) => {
+        const flags = initSaved(movies, saved);
+        localStorage.setItem('savedMoviesFlags', JSON.stringify(flags));
+        setSavedMoviesFlags(flags);
+        setCurrentSearch(filterMovies(movies, searchString, short));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } else {
+      setCurrentSearch(filterMovies(allMovies, searchString, short));
+    }
   };
 
   const handleSavedSearch = (searchString) => {
@@ -84,9 +103,20 @@ function App() {
           <Route path="/" element={<Landing menuClickHandler={menuClickHandler} />}/>
           <Route path="/signup" element={<Register onRegister={onRegister} />}/>
           <Route path="/signin" element={<Login onLogin={onLogin} />}/>
-          <Route path="/movies" element={<Private><Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch} /></Private>}/>
-          <Route path="/profile" element={<Private><Profile menuClickHandler={menuClickHandler} onLogout={onLogout} /></Private>}/>
-          <Route path="/saved-movies" element={<Private><SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch} /></Private>}/>
+          <Route path="/movies" element={
+            <Private>
+              <Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch}
+                      currentSearch={currentSearch} savedMoviesFlags={savedMoviesFlags}
+                      setSavedMoviesFlags={setSavedMoviesFlags} />
+            </Private>}/>
+          <Route path="/profile" element={
+            <Private>
+              <Profile menuClickHandler={menuClickHandler} onLogout={onLogout} />
+            </Private>}/>
+          <Route path="/saved-movies" element={
+            <Private>
+              <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch} savedMoviesFlags={savedMoviesFlags} setSavedMoviesFlags={setSavedMoviesFlags} />
+            </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Menu open={isMenuOpen} menuClickHandler={menuClickHandler} />
