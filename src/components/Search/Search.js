@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Search(props) {
-  const [searchField, setSearchField] = useState('');
-  const [shortField, setShortField] = useState(false);
+export default function Search({defaultText, defaultShort, handleSearch, }) {
+  const [searchField, setSearchField] = useState(defaultText || '');
+  const [shortField, setShortField] = useState(defaultShort || false);
+
+  // useEffect(() => {
+  //   handleSearch(searchField, shortField);
+  // }, [shortField, searchField, handleSearch]);
 
   const handleSearchInput = (e) => {
     setSearchField(e.target.value);
@@ -14,7 +18,7 @@ export default function Search(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleSearch(searchField, shortField);
+    handleSearch(searchField, shortField);
   }
 
   return (
@@ -22,11 +26,11 @@ export default function Search(props) {
       <form className="Search__form">
         <div className="Search__container">
           <input type="text" placeholder="Фильм" className="Search__input" value={searchField} onChange={handleSearchInput} required />
-          <button className="Search__button" onClick={handleSubmit}></button>
+          <button className="Search__button" onClick={handleSubmit} type="submit"></button>
         </div>
         <div className="Search__label">
           <label htmlFor="switch" className="Search__slider-box">
-            <input key={Math.random()} id="switch" type="checkbox" className="Search__checkbox" defaultChecked={shortField} onChange={handleShortSwitch} />
+            <input id="switch" type="checkbox" className="Search__checkbox" checked={shortField} onChange={handleShortSwitch} />
             <span className="Search__slider"></span>
           </label>
           <span className="Search__label-text">Короткометражки</span>

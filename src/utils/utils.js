@@ -99,10 +99,10 @@ function initSaved(allMovies, savedMovies) {
  * @param {*} savedMoviesFlags
  * @returns
  */
-function syncSavedMovies(savedMovies, savedMoviesFlags) {
-  let result = savedMovies || [];
-  if (!isEmpty(savedMovies)  && !isEmpty(savedMoviesFlags)) {
-    result = savedMovies.filter(movie => savedMoviesFlags[movie.movieId]);
+function syncSavedMovies(allMovies, savedMoviesFlags) {
+  let result = [];
+  if (!isEmpty(allMovies)  && !isEmpty(savedMoviesFlags)) {
+    result = allMovies.filter(movie => savedMoviesFlags[movie.movieId]);
     localStorage.setItem('savedMovies', JSON.stringify(result));
     localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
   }

@@ -27,12 +27,83 @@ function App() {
   const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem('allMovies')) || []);
   const [savedMovies, setSavedMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')) || []);
   const [savedMoviesFlags, setSavedMoviesFlags] = useState(JSON.parse(localStorage.getItem('savedMoviesFlags')) || {});
-  const [currentSearch, setCurrentSearch] = useState([]);
+  const [checkedSaved, setCheckedSaved] = useState(JSON.parse(localStorage.getItem('checkedSaved')) || false);
+  const [savedSearch, setSavedSearch] = useState(JSON.parse(localStorage.getItem('savedSearch')) || []);
+  const [savedShort, setSavedShort] = useState(JSON.parse(localStorage.getItem('savedShort')) || false);
+  const [savedText, setSavedText] = useState(JSON.parse(localStorage.getItem('savedText')) || '')
 
-  //delete movie from savedMovies on flag change
+  const [currentSearch, setCurrentSearch] = useState(JSON.parse(localStorage.getItem('currentSearch')) || []);
+  const [currentShort, setCurrentShort] = useState(JSON.parse(localStorage.getItem('currentShort')) || false);
+  const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '')
+
+  //update savedMovies localStorage on flag change
   useEffect(() => {
-    syncSavedMovies(savedMovies, savedMoviesFlags);
-  }, [savedMoviesFlags, savedMovies]);
+    const result = allMovies.filter(movie => savedMoviesFlags[movie.movieId]);
+    localStorage.setItem('savedMovies', JSON.stringify(result));
+    localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
+  }, [savedMoviesFlags, allMovies]);
+
+  //update saved search localStorage data
+  useEffect(() => {
+    localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
+    localStorage.setItem('savedShort', JSON.stringify(savedShort));
+    localStorage.setItem('savedText', JSON.stringify(savedText));
+  }, [savedSearch, savedShort, savedText]);
+
+  //update current search localStorage data
+  useEffect(() => {
+    localStorage.setItem('currentSearch', JSON.stringify(currentSearch));
+    localStorage.setItem('currentShort', JSON.stringify(currentShort));
+    localStorage.setItem('currentText', JSON.stringify(currentText));
+  }, [currentSearch, currentShort, currentText]);
+
+  //preload public api data
+  useEffect(() => {
+    moviesApi()
+    .then((movies) => {
+      const allMoviesPrep = transformData(movies);
+      localStorage.setItem('allMovies', JSON.stringify(allMoviesPrep));
+      setAllMovies(allMoviesPrep);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, []);
+
+  const handleCardSave = (card) => {
+    if (savedMoviesFlags[card.movieId]) {
+      api.deleteCard(savedMoviesFlags[card.movieId])
+      .then(res => {
+        setSavedMovies(saved => saved.filter(movie => movie.movieId !== card.movieId));
+        setSavedSearch(saved => saved.filter(movie => movie.movieId !== card.movieId));
+        setSavedMoviesFlags({...savedMoviesFlags, [card.movieId]: false});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } else {
+      api.saveCard(card)
+      .then(movie => {
+        setSavedMovies(saved => [...saved, movie]);
+        setSavedMoviesFlags({...savedMoviesFlags, [card.movieId]: movie._id});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+  };
+
+  const handleCardDelete = (card) => {
+    api.deleteCard(savedMoviesFlags[card.movieId])
+    .then(res => {
+      setSavedMovies(saved => saved.filter(movie => movie.movieId !== card.movieId));
+      setSavedSearch(saved => saved.filter(movie => movie.movieId !== card.movieId));
+      setSavedMoviesFlags({...savedMoviesFlags, [card.movieId]: false});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  };
 
   const menuClickHandler = () => {
     setIsMenuOpen(current => !current);
@@ -56,44 +127,79 @@ function App() {
     });
   };
 
+  //exit and cleanup
   const onLogout = () => {
     setupIsLoggedIn(false);
+    setIsMenuOpen(false);
+    setSavedMoviesFlags({});
+    setSavedMovies([]);
+    setCheckedSaved(false);
+    setCurrentSearch([]);
+    setCurrentShort(false);
+    setCurrentText('');
+    setSavedSearch([]);
+    setSavedShort(false);
+    setSavedText('');
     localStorage.removeItem('allMovies');
     localStorage.removeItem('savedMovies');
     localStorage.removeItem('savedMoviesFlags');
+    localStorage.removeItem('checkedSaved');
+    localStorage.removeItem('currentSearch');
+    localStorage.removeItem('currentShort');
+    localStorage.removeItem('currentText');
+    localStorage.removeItem('savedSearch');
+    localStorage.removeItem('savedShort');
+    localStorage.removeItem('savedText');
+  };
+
+  const getSavedMovies = () => {
+    return api.loadSavedMovies()
+    .then((saved) => {
+      localStorage.setItem('savedMovies', JSON.stringify(saved));
+      setSavedMovies(saved);
+      localStorage.setItem('checkedSaved', true);
+      setCheckedSaved(true);
+
+      return saved;
+    })
+    .then((saved) => {
+      const flags = initSaved(allMovies, saved);
+      localStorage.setItem('savedMoviesFlags', JSON.stringify(flags));
+      setSavedMoviesFlags(flags);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
 
   const handleSearch = (searchString, short, changeLoaderVisibility) => {
 
     //get movies if n/a
-    if(isEmpty(allMovies) || isEmpty(savedMovies) || isEmpty(savedMoviesFlags)) {
-      Promise.all([moviesApi(), api.loadSavedMovies()])
-      .then(([movies, saved]) => {
-        const allMoviesPrep = transformData(movies);
-        localStorage.setItem('allMovies', JSON.stringify(allMoviesPrep));
-        setAllMovies(allMoviesPrep);
-
-        localStorage.setItem('savedMovies', JSON.stringify(saved));
-        setSavedMovies(saved);
-
-        return [allMoviesPrep, saved]
-      })
-      .then(([movies, saved]) => {
-        const flags = initSaved(movies, saved);
-        localStorage.setItem('savedMoviesFlags', JSON.stringify(flags));
-        setSavedMoviesFlags(flags);
-        setCurrentSearch(filterMovies(movies, searchString, short));
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    if(isEmpty(savedMovies) && !checkedSaved) {
+      getSavedMovies()
+      .finally(() => {
+        setCurrentSearch(filterMovies(allMovies, searchString, short));
+      });
     } else {
       setCurrentSearch(filterMovies(allMovies, searchString, short));
     }
+    setCurrentShort(short);
+    setCurrentText(searchString);
   };
 
-  const handleSavedSearch = (searchString) => {
+  const handleSavedSearch = (searchString, short) => {
 
+    //get movies if n/a
+    if(isEmpty(savedMovies) && !checkedSaved) {
+      getSavedMovies()
+      .finally(() => {
+        setSavedSearch(filterMovies(savedMovies, searchString, short));
+      });
+    } else {
+      setSavedSearch(filterMovies(savedMovies, searchString, short));
+    }
+    setSavedShort(short);
+    setSavedText(searchString);
   };
 
   return (
@@ -106,8 +212,9 @@ function App() {
           <Route path="/movies" element={
             <Private>
               <Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch}
-                      currentSearch={currentSearch} savedMoviesFlags={savedMoviesFlags}
-                      setSavedMoviesFlags={setSavedMoviesFlags} />
+                      currentSearch={currentSearch} handleCardSave={handleCardSave}
+                      currentText={currentText} currentShort={currentShort}
+                      savedMoviesFlags={savedMoviesFlags} />
             </Private>}/>
           <Route path="/profile" element={
             <Private>
@@ -115,7 +222,10 @@ function App() {
             </Private>}/>
           <Route path="/saved-movies" element={
             <Private>
-              <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch} savedMoviesFlags={savedMoviesFlags} setSavedMoviesFlags={setSavedMoviesFlags} />
+              <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
+                           handleCardDelete={handleCardDelete}
+                           savedMovies={savedMovies} savedMoviesFlags={savedMoviesFlags}
+                           savedSearch={savedSearch} savedText={savedText} savedShort={savedShort} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>

@@ -141,7 +141,7 @@
 @import url(../src/components/Card/__time/Card__time.css);
 @import url(../src/components/Card/__button/Card__button.css);
 @import url(../src/components/Card/__button/_type/Card__button_type_set.css);
-@import url(../src/components/Card/__button/_type/Card__button_type_close.css);
+@import url(../src/components/Card/__button/_type/Card__button_type_delete.css);
 @import url(../src/components/Card/__img/Card__img.css);
 @import url(../src/components/Card/__link/Card__link.css);
 
