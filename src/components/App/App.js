@@ -14,7 +14,7 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { tokenize, transformData, initSaved, syncSavedMovies, isEmpty, filterMovies } from '../../utils/utils';
+import { tokenize, transformData, initSaved, syncSavedMovies, isEmpty, filterMovies, preloaderDelay } from '../../utils/utils';
 
 function App() {
 
@@ -30,11 +30,14 @@ function App() {
   const [checkedSaved, setCheckedSaved] = useState(JSON.parse(localStorage.getItem('checkedSaved')) || false);
   const [savedSearch, setSavedSearch] = useState(JSON.parse(localStorage.getItem('savedSearch')) || []);
   const [savedShort, setSavedShort] = useState(JSON.parse(localStorage.getItem('savedShort')) || false);
-  const [savedText, setSavedText] = useState(JSON.parse(localStorage.getItem('savedText')) || '')
+  const [savedText, setSavedText] = useState(JSON.parse(localStorage.getItem('savedText')) || '');
+  const [savedPreloaderVisible, setSavedPreloaderVisible ] = useState(false);
+
 
   const [currentSearch, setCurrentSearch] = useState(JSON.parse(localStorage.getItem('currentSearch')) || []);
   const [currentShort, setCurrentShort] = useState(JSON.parse(localStorage.getItem('currentShort')) || false);
-  const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '')
+  const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '');
+  const [currPreloaderVisible, setCurrPreloaderVisible ] = useState(false);
 
   //update savedMovies localStorage on flag change
   useEffect(() => {
@@ -69,6 +72,15 @@ function App() {
       console.log(err);
     })
   }, []);
+
+  //wait random time before hiding preloaders
+  useEffect(() => {
+    setTimeout(() => setCurrPreloaderVisible(false), preloaderDelay);
+  }, [currentSearch]);
+
+  useEffect(() => {
+    setTimeout(() => setSavedPreloaderVisible(false), preloaderDelay);
+  }, [savedSearch]);
 
   const handleCardSave = (card) => {
     if (savedMoviesFlags[card.movieId]) {
@@ -172,7 +184,9 @@ function App() {
     })
   };
 
-  const handleSearch = (searchString, short, changeLoaderVisibility) => {
+  const handleSearch = (searchString, short) => {
+
+    setCurrPreloaderVisible(true);
 
     //get movies if n/a
     if(isEmpty(savedMovies) && !checkedSaved) {
@@ -188,6 +202,8 @@ function App() {
   };
 
   const handleSavedSearch = (searchString, short) => {
+
+    setSavedPreloaderVisible(true);
 
     //get movies if n/a
     if(isEmpty(savedMovies) && !checkedSaved) {
@@ -214,7 +230,8 @@ function App() {
               <Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch}
                       currentSearch={currentSearch} handleCardSave={handleCardSave}
                       currentText={currentText} currentShort={currentShort}
-                      savedMoviesFlags={savedMoviesFlags} />
+                      savedMoviesFlags={savedMoviesFlags}
+                      currPreloaderVisible={currPreloaderVisible} />
             </Private>}/>
           <Route path="/profile" element={
             <Private>
@@ -225,7 +242,8 @@ function App() {
               <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
                            handleCardDelete={handleCardDelete}
                            savedMovies={savedMovies} savedMoviesFlags={savedMoviesFlags}
-                           savedSearch={savedSearch} savedText={savedText} savedShort={savedShort} />
+                           savedSearch={savedSearch} savedText={savedText} savedShort={savedShort}
+                           savedPreloaderVisible={savedPreloaderVisible} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>

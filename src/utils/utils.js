@@ -7,6 +7,12 @@ const moviesApiConfig = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
 };
 
+const preloaderDelay = randomIntFromInterval(300,1200); //ms
+
+function randomIntFromInterval(min, max) { // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function isTrue(value) {
   return value === 'true';
 }
@@ -149,4 +155,4 @@ function convertDuration(duration) {
   }
 }
 
-export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, syncSavedMovies, filterMovies, convertDuration };
+export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, syncSavedMovies, filterMovies, convertDuration, preloaderDelay };

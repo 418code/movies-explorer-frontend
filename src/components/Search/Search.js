@@ -4,10 +4,6 @@ export default function Search({defaultText, defaultShort, handleSearch, }) {
   const [searchField, setSearchField] = useState(defaultText || '');
   const [shortField, setShortField] = useState(defaultShort || false);
 
-  // useEffect(() => {
-  //   handleSearch(searchField, shortField);
-  // }, [shortField, searchField, handleSearch]);
-
   const handleSearchInput = (e) => {
     setSearchField(e.target.value);
   }
