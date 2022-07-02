@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: (process.env.NODE_ENV === 'production') ? 'https://api.movies.418co.de/' : 'http://localhost:3000/',
   appJSONType: 'application/json'
 };
 
