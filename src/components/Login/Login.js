@@ -17,11 +17,11 @@ export default function Login(props) {
         <label className="EnterForm__label">E-mail</label>
         <input name="email" type="email" className={`EnterForm__input ${errors['email'] ? 'EnterForm__input_type_error' : ''}`}
          placeholder="pochta@yandex.ru" minLength="3" maxLength="128"
-         value={values['email']} onChange={handleChange} required/>
+         value={values['email'] || ''} onChange={handleChange} required/>
         <span className={`EnterForm__input-error ${!isValid ? 'EnterForm__input-error_active' : ''}`}>{errors['email']}</span>
         <label className="EnterForm__label">Пароль</label>
         <input name="password" type="password" className={`EnterForm__input ${errors['password'] ? 'EnterForm__input_type_error' : ''}`}
-         placeholder="••••••••••••••" minLength="8" maxLength="64" value={values['password']} onChange={handleChange} required/>
+         placeholder="••••••••••••••" minLength="8" maxLength="64" value={values['password'] || ''} onChange={handleChange} required/>
         <span className={`EnterForm__input-error ${!isValid ? 'EnterForm__input-error_active' : ''}`}>{errors['password']}</span>
       </div>
       <button className={`EnterForm__button ${!isValid ? 'EnterForm__button_disabled' : ''}`} disabled={!isValid}>Войти</button>
