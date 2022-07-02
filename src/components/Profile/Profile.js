@@ -43,7 +43,7 @@ export default function Profile (props) {
               <button className={`Profile__button ${!isValid ? 'Profile__button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
             </li>
             <li key="logout">
-              <Link to="/" onClick={props.onLogout} className="App__link Profile__link Profile__link_type_bold">Выйти из аккаунта</Link>
+              <Link to="/" onClick={props.handleLogout} className="App__link Profile__link Profile__link_type_bold">Выйти из аккаунта</Link>
             </li>
           </ul>
         </form>

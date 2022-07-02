@@ -1,4 +1,4 @@
-import { apiConfig, cardFields } from './utils';
+import { apiConfig } from './utils';
 
 class Api {
   constructor(options) {

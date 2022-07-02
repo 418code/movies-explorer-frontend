@@ -3,11 +3,11 @@ import { useFormWithValidation } from '../FormValidate/FormValidate';
 import EnterForm from '../EnterForm/EnterForm';
 
 export default function Login(props) {
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation(false, {password: '', email: ''});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onLogin(values['email'], values['password']);
+    props.handleLogin(values['email'], values['password']);
     resetForm();
   }
 

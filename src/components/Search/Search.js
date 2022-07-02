@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Search({defaultText, defaultShort, handleSearch, }) {
   const [searchField, setSearchField] = useState(defaultText || '');

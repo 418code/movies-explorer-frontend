@@ -112,22 +112,6 @@ function initSaved(allMovies, savedMovies) {
 }
 
 /**
- * Returns savedMovies that still have a value set in savedMoviesFlags table
- * @param {*} savedMovies
- * @param {*} savedMoviesFlags
- * @returns
- */
-function syncSavedMovies(allMovies, savedMoviesFlags) {
-  let result = [];
-  if (!isEmpty(allMovies)  && !isEmpty(savedMoviesFlags)) {
-    result = allMovies.filter(movie => savedMoviesFlags[movie.movieId]);
-    localStorage.setItem('savedMovies', JSON.stringify(result));
-    localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
-  }
-  return result;
-}
-
-/**
  * Performs search in movies array based on parameters
  * @param {Array} movies
  * @param {String} searchString
@@ -167,4 +151,4 @@ function convertDuration(duration) {
   }
 }
 
-export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, syncSavedMovies, filterMovies, convertDuration, preloaderDelay, cardDimensions };
+export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, filterMovies, convertDuration, preloaderDelay, cardDimensions };

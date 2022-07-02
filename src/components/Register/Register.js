@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 
 export default function Register(props) {
 
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation(false, {name: '', email: '', password: ''});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onRegister(values['name'], values['email'], values['password']);
+    props.handleRegister(values['name'], values['email'], values['password']);
     resetForm();
   }
 

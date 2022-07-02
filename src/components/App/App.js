@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
 import Menu from '../Menu/Menu';
@@ -14,14 +13,14 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { tokenize, transformData, initSaved, syncSavedMovies, isEmpty, filterMovies, preloaderDelay } from '../../utils/utils';
+import { transformData, initSaved, isEmpty, filterMovies, preloaderDelay } from '../../utils/utils';
 
 function App() {
 
   //context state variables
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')) || { name: '', email: '' });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn, setupIsLoggedIn } = useContext(AuthContext);
+  const { setupIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [allMovies, setAllMovies] = useState(JSON.parse(localStorage.getItem('allMovies')) || []);
@@ -126,14 +125,14 @@ function App() {
     setIsMenuOpen(current => !current);
   };
 
-  const onRegister = (name, email, password) => {
+  const handleRegister = (name, email, password) => {
     api.register({name, email, password})
     .then(res => {
       navigate('/signin');
     });
   };
 
-  const onLogin = (email, password) => {
+  const handleLogin = (email, password) => {
     api.signIn({ email, password })
     .then(user => {
       setupIsLoggedIn(true);
@@ -146,7 +145,7 @@ function App() {
   };
 
   //exit and cleanup
-  const onLogout = () => {
+  const handleLogout = () => {
     setupIsLoggedIn(false);
     setIsMenuOpen(false);
     setSavedMoviesFlags({});
@@ -231,8 +230,8 @@ function App() {
       <div className="App body__element">
         <Routes>
           <Route path="/" element={<Landing menuClickHandler={menuClickHandler} />}/>
-          <Route path="/signup" element={<Register onRegister={onRegister} />}/>
-          <Route path="/signin" element={<Login onLogin={onLogin} />}/>
+          <Route path="/signup" element={<Register handleRegister={handleRegister} />}/>
+          <Route path="/signin" element={<Login handleLogin={handleLogin} />}/>
           <Route path="/movies" element={
             <Private>
               <Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch}
@@ -243,7 +242,7 @@ function App() {
             </Private>}/>
           <Route path="/profile" element={
             <Private>
-              <Profile menuClickHandler={menuClickHandler} onLogout={onLogout} handleProfileUpdate={handleProfileUpdate} />
+              <Profile menuClickHandler={menuClickHandler} handleLogout={handleLogout} handleProfileUpdate={handleProfileUpdate} />
             </Private>}/>
           <Route path="/saved-movies" element={
             <Private>
