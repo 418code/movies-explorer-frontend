@@ -1,10 +1,10 @@
 import { useState, useCallback } from 'react';
 
 //custom hook for form mgmt && validation
-export function useFormWithValidation() {
-  const [values, setValues] = useState({});
+export function useFormWithValidation(startValid = false, startValues = {}) {
+  const [values, setValues] = useState(startValues);
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(startValid);
 
   const handleChange = (event) => {
     const target = event.target;
@@ -24,5 +24,5 @@ export function useFormWithValidation() {
     [setValues, setErrors, setIsValid]
   );
 
-  return { values, handleChange, errors, isValid, resetForm };
+  return { values, setValues, handleChange, errors, isValid, resetForm };
 }

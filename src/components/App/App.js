@@ -19,7 +19,7 @@ import { tokenize, transformData, initSaved, syncSavedMovies, isEmpty, filterMov
 function App() {
 
   //context state variables
-  const [currentUser, setCurrentUser] = useState({ name: '', email: '' });
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')) || { name: '', email: '' });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isLoggedIn, setupIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -59,6 +59,11 @@ function App() {
     localStorage.setItem('currentShort', JSON.stringify(currentShort));
     localStorage.setItem('currentText', JSON.stringify(currentText));
   }, [currentSearch, currentShort, currentText]);
+
+  //update current user localStorage data
+  useEffect(() => {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  });
 
   //preload public api data
   useEffect(() => {
@@ -130,8 +135,9 @@ function App() {
 
   const onLogin = (email, password) => {
     api.signIn({ email, password })
-    .then(data => {
+    .then(user => {
       setupIsLoggedIn(true);
+      setCurrentUser({name: user.data.name, email: user.data.email})
       navigate('/movies');
     })
     .catch(err => {
@@ -152,16 +158,8 @@ function App() {
     setSavedSearch([]);
     setSavedShort(false);
     setSavedText('');
-    localStorage.removeItem('allMovies');
-    localStorage.removeItem('savedMovies');
-    localStorage.removeItem('savedMoviesFlags');
-    localStorage.removeItem('checkedSaved');
-    localStorage.removeItem('currentSearch');
-    localStorage.removeItem('currentShort');
-    localStorage.removeItem('currentText');
-    localStorage.removeItem('savedSearch');
-    localStorage.removeItem('savedShort');
-    localStorage.removeItem('savedText');
+    setCurrentUser({name: '', email: ''});
+    localStorage.clear();
   };
 
   const getSavedMovies = () => {
@@ -218,6 +216,16 @@ function App() {
     setSavedText(searchString);
   };
 
+  const handleProfileUpdate = (name, email) => {
+    api.setUserInfo({name, email})
+    .then(user => {
+      setCurrentUser({name, email});
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App body__element">
@@ -235,7 +243,7 @@ function App() {
             </Private>}/>
           <Route path="/profile" element={
             <Private>
-              <Profile menuClickHandler={menuClickHandler} onLogout={onLogout} />
+              <Profile menuClickHandler={menuClickHandler} onLogout={onLogout} handleProfileUpdate={handleProfileUpdate} />
             </Private>}/>
           <Route path="/saved-movies" element={
             <Private>

@@ -164,6 +164,11 @@
 @import url(../src/components/Profile/__list/Profile__list.css);
 @import url(../src/components/Profile/__link/Profile__link.css);
 @import url(../src/components/Profile/__link/_type/Profile__link_type_bold.css);
+@import url(../src/components/Profile/__form/Profile__form.css);
+@import url(../src/components/Profile/__input/Profile__input.css);
+@import url(../src/components/Profile/__input/_type/Profile__input_type_error.css);
+@import url(../src/components/Profile/__button/Profile__button.css);
+@import url(../src/components/Profile/__button/_disabled/Profile__button_disabled.css);
 
 /* EnterForm block */
 @import url(../src/components/EnterForm/EnterForm.css);

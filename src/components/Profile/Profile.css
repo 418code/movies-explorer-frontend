@@ -1,27 +1,3 @@
 .Profile {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 29px 143px 1fr;
-  align-items: end;
-  justify-items: center;
-  width: 100%;
-  padding: 70px 0 40px;
-  box-sizing: border-box;
   height: 100%;
-}
-
-@media (min-width: 768px)
-{
-  .Profile {
-    grid-template-rows: .25fr 158px .58fr .42fr;
-    padding: 70px 0 0;
-  }
-}
-
-@media (min-width: 1280px)
-{
-  .Profile {
-    padding: 70px 0;
-    grid-template-rows: 33px 186px 1fr;
-  }
 }

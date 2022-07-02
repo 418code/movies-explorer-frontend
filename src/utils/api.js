@@ -67,6 +67,15 @@ class Api {
   }
 
   /**
+   * Sets user profile information
+   * @param {Object} currentUser
+   * @returns {Promise}
+   */
+  setUserInfo(currentUser) {
+    return this._fetchPath('users/me', 'PATCH', currentUser);
+  }
+
+  /**
    * Get all saved movies
    * @returns {Promise}
    */
