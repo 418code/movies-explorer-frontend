@@ -5,10 +5,9 @@
   font-size: 10px;
   line-height: 12px;
   color: #EE3465;
-  /* visibility: hidden; */
-  /* padding-bottom: 20px; */
 }
 
 .EnterForm__input-error:last-of-type {
   top: 0;
+  margin-bottom: 10px;
 }
