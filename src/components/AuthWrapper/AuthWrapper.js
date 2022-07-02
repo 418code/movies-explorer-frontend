@@ -2,11 +2,19 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { api } from '../../utils/api';
-import { isTrue } from '../../utils/utils';
+import { isTrue, cookieDomain } from '../../utils/utils';
 
 export default function AuthWrapper({children}) {
 
-  const [cookies, removeCookie] = useCookies(['checkJWT']);
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  //init checkJWT cookie with correct domain
+  useEffect(() => {
+    if (!cookies.checkJWT) {
+      setCookie('checkJWT', false, { domain: cookieDomain});
+    }
+  });
+
   const [isLoggedIn, setIsLoggedIn] = useState(isTrue(cookies.checkJWT));
 
   // check httpOnly cookie

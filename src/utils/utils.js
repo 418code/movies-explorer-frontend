@@ -7,6 +7,8 @@ const moviesApiConfig = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
 };
 
+const cookieDomain = (process.env.NODE_ENV === 'production') ? 'api.movies.418co.de' : 'localhost';
+
 const cardDimensions = {
   320: {height: 240.729,
         topPad: 40,
@@ -151,4 +153,4 @@ function convertDuration(duration) {
   }
 }
 
-export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, filterMovies, convertDuration, preloaderDelay, cardDimensions };
+export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, filterMovies, convertDuration, preloaderDelay, cardDimensions, cookieDomain };
