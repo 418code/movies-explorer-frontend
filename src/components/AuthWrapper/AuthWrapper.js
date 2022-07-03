@@ -6,14 +6,7 @@ import { isTrue, cookieDomain } from '../../utils/utils';
 
 export default function AuthWrapper({children}) {
 
-  const [cookies, setCookie, removeCookie] = useCookies();
-
-  //init checkJWT cookie with correct domain
-  useEffect(() => {
-    if (!cookies.checkJWT) {
-      setCookie('checkJWT', false, { domain: cookieDomain});
-    }
-  });
+  const [cookies, , removeCookie] = useCookies([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(isTrue(cookies.checkJWT));
 
@@ -30,7 +23,7 @@ export default function AuthWrapper({children}) {
   //signout
   useEffect(() => {
     if (!isLoggedIn) {
-      removeCookie('checkJWT');
+      removeCookie('checkJWT', {path: '/', domain: cookieDomain});
       api.signOut()
       .catch(err => {
         console.log(err);

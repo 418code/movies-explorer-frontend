@@ -7,7 +7,8 @@ const moviesApiConfig = {
   baseUrl: 'https://api.nomoreparties.co/beatfilm-movies',
 };
 
-const cookieDomain = (process.env.NODE_ENV === 'production') ? 'api.movies.418co.de' : 'localhost';
+const cookieDomain = (process.env.NODE_ENV === 'production') ?
+  '.movies.418co.de' : 'localhost';
 
 const cardDimensions = {
   320: {height: 240.729,
