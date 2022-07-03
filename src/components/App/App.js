@@ -83,7 +83,8 @@ function App() {
   }, [currentSearch]);
 
   useEffect(() => {
-    setTimeout(() => setSavedPreloaderVisible(false), preloaderDelay);
+    const timer = setTimeout(() => setSavedPreloaderVisible(false), preloaderDelay);
+    return () => clearTimeout(timer);
   }, [savedSearch]);
 
   const handleCardSave = (card) => {
