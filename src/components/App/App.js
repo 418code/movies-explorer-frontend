@@ -79,7 +79,8 @@ function App() {
 
   //wait random time before hiding preloaders
   useEffect(() => {
-    setTimeout(() => setCurrPreloaderVisible(false), preloaderDelay);
+    const timer = setTimeout(() => setCurrPreloaderVisible(false), preloaderDelay);
+    return () => clearTimeout(timer);
   }, [currentSearch]);
 
   useEffect(() => {
