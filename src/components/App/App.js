@@ -130,7 +130,7 @@ function App() {
   const handleRegister = (name, email, password) => {
     api.register({name, email, password})
     .then(res => {
-      navigate('/signin');
+      handleLogin(email, password);
     });
   };
 
