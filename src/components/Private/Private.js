@@ -9,5 +9,5 @@ export default function Private(props) {
   return isLoggedIn ?
     props.children
     :
-    <Navigate to="/signin" />;
+    <Navigate to="/" />;
 }
