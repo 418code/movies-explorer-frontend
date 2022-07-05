@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from '../Header/Header';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../FormValidate/FormValidate';
@@ -8,6 +8,9 @@ export default function Profile (props) {
 
   const currentUser = useContext(CurrentUserContext);
   const { values, handleChange, errors, isValid, } = useFormWithValidation(true, currentUser);
+
+  const disabledButtonCondition = (!isValid ||
+    (values.name === currentUser.name && values.email === currentUser.email));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ export default function Profile (props) {
       <Header menuClickHandler={props.menuClickHandler} />
       <main className="Profile">
         <form className="Profile__form" onSubmit={handleSubmit}>
-          <h1 className="App__header Profile__header">Привет, Виталий!</h1>
+          <h1 className="App__header Profile__header">Привет, {currentUser.name}!</h1>
           <table className="Profile__table">
             <tbody>
               <tr className="Profile__row Profile__row_position_top">
@@ -40,7 +43,8 @@ export default function Profile (props) {
           </table>
           <ul className="App__list Profile__list">
             <li key="edit">
-              <button className={`Profile__button ${!isValid ? 'Profile__button_disabled' : ''}`} disabled={!isValid}>Редактировать</button>
+              <button className={`Profile__button ${disabledButtonCondition ?
+                'Profile__button_disabled' : ''}`} disabled={disabledButtonCondition}>Редактировать</button>
             </li>
             <li key="logout">
               <Link to="/" onClick={props.handleLogout} className="App__link Profile__link Profile__link_type_bold">Выйти из аккаунта</Link>
