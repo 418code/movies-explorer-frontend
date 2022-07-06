@@ -5,7 +5,7 @@ import Search from '../Search/Search';
 import Cards from '../Cards/Cards';
 import Preloader from '../Preloader/Preloader';
 import Loader from '../Loader/Loader';
-import { cardDimensions } from '../../utils/utils';
+import { cardDimensions, mobileMaxWidth, tabletMaxWidth } from '../../utils/utils';
 
 export default function Movies(
   {currentSearch, menuClickHandler, handleSearch,
@@ -15,27 +15,42 @@ export default function Movies(
   //calculate initial maxHeight for current resolution
   const calcHeight = () => {
     const width = window.innerWidth;
-    if (width < 635) {
-      return Math.floor(cardDimensions[320].height*5) + cardDimensions[320].topPad + cardDimensions[320].gap*4;
-    } else if ((635 <= width) && (width <= 1136)) {
-      return Math.floor(cardDimensions[768].height*4) + cardDimensions[768].topPad + cardDimensions[768].gap*3;
-    } else if (width > 1136) {
-      return cardDimensions[1280].height*4 + cardDimensions[1280].topPad + cardDimensions[1280].gap*3;
+
+    //calc initila maxHeight for a single resolution
+    const calcDimHeight = (width) => {
+      return Math.floor(
+        cardDimensions[width].height*cardDimensions[width].initialRows) +
+        cardDimensions[width].topPad +
+        cardDimensions[width].gap*(cardDimensions[width].initialRows - 1);
+    };
+
+    if (width < mobileMaxWidth) {
+      return calcDimHeight(320);
+    } else if ((mobileMaxWidth <= width) && (width <= tabletMaxWidth)) {
+      return calcDimHeight(768);
+    } else if (width > tabletMaxWidth) {
+      return calcDimHeight(1280);
     }
   };
+
 
   //calculate height of all cards for this resolution
   const calcTotalHeight = (numCards) => {
     const width = window.innerWidth;
-    if (width < 635) {
-      return Math.floor(cardDimensions[320].height*numCards) +
-        cardDimensions[320].topPad + cardDimensions[320].gap*(numCards-1);
-    } else if ((635 <= width) && (width <= 1136)) {
-      return Math.floor(cardDimensions[768].height*(Math.floor(numCards / 2))) +
-        cardDimensions[768].topPad + cardDimensions[768].gap*(Math.floor(numCards / 2)-1);
-    } else if (width > 1136) {
-      return cardDimensions[1280].height*(Math.floor(numCards / 3)) +
-        cardDimensions[1280].topPad + cardDimensions[1280].gap*(Math.floor(numCards / 3)-1);
+
+    //calculates max height for 320/768/1280 width and given number of cards
+    const calcMaxHeight = (width, numCards) => Math.floor(
+      cardDimensions[width].height*Math.floor(numCards)) +
+      cardDimensions[width].topPad +
+      cardDimensions[width].gap*(Math.floor(numCards)-1);
+
+
+    if (width < mobileMaxWidth) {
+      return calcMaxHeight(320, numCards);
+    } else if ((mobileMaxWidth <= width) && (width <= tabletMaxWidth)) {
+      return calcMaxHeight(768, numCards / 2);
+    } else if (width > tabletMaxWidth) {
+      return calcMaxHeight(1280, numCards / 3);
     }
   };
 

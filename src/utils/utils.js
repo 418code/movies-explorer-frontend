@@ -13,14 +13,20 @@ const cookieDomain = (process.env.NODE_ENV === 'production') ?
 const cardDimensions = {
   320: {height: 240.729,
         topPad: 40,
-        gap: 16},
+        gap: 16,
+        initialRows: 5},
   768: {height: 262.729,
         topPad: 70,
-        gap: 36},
+        gap: 36,
+        initialRows: 4},
   1280: {height: 276,
         topPad: 70,
-        gap: 30},
+        gap: 30,
+        initialRows: 4},
 };
+
+const mobileMaxWidth = 635;//px
+const tabletMaxWidth = 1136;//px
 
 const preloaderDelay = randomIntFromInterval(300,1200); //ms
 
@@ -114,6 +120,8 @@ function initSaved(allMovies, savedMovies) {
   return result;
 }
 
+const shortMovieMaxLength = 40; //min
+
 /**
  * Performs search in movies array based on parameters
  * @param {Array} movies
@@ -129,7 +137,7 @@ function filterMovies(movies, searchString, short) {
   return movies.filter(
     obj => ((tokenize(obj.nameRU).filter(checker).length > 0)
      || (tokenize(obj.nameEN).filter(checker).length > 0))
-     && (short ? (parseInt(obj.duration) <= 40) : true)
+     && (short ? (parseInt(obj.duration) <= shortMovieMaxLength) : true)
   )
 }
 
@@ -154,4 +162,18 @@ function convertDuration(duration) {
   }
 }
 
-export { apiConfig, moviesApiConfig, isTrue, isEmpty, tokenize, transformData, initSaved, filterMovies, convertDuration, preloaderDelay, cardDimensions, cookieDomain };
+export {
+apiConfig,
+moviesApiConfig,
+isTrue,
+isEmpty,
+tokenize,
+transformData,
+initSaved,
+filterMovies,
+convertDuration,
+preloaderDelay,
+cardDimensions,
+cookieDomain,
+mobileMaxWidth,
+tabletMaxWidth };
