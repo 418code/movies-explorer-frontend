@@ -1,0 +1,8 @@
+.SearchNotFound {
+  width: 100%;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+}

@@ -184,3 +184,8 @@
 @import url(../src/components/EnterForm/__text/EnterForm__text.css);
 @import url(../src/components/EnterForm/__input-error/EnterForm__input-error.css);
 @import url(../src/components/EnterForm/__input-error/_active/EnterForm__input-error_active.css);
+
+/* SearchNotFound */
+@import url(../src/components/SearchNotFound/SearchNotFound.css);
+@import url(../src/components/SearchNotFound/_visible/SearchNotFound_visible.css);
+@import url(../src/components/SearchNotFound/__text/SearchNotFound__text.css);

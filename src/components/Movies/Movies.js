@@ -5,12 +5,13 @@ import Search from '../Search/Search';
 import Cards from '../Cards/Cards';
 import Preloader from '../Preloader/Preloader';
 import Loader from '../Loader/Loader';
+import SearchNotFound from '../SearchNotFound/SearchNotFound';
 import { cardDimensions, mobileMaxWidth, tabletMaxWidth } from '../../utils/utils';
 
 export default function Movies(
   {currentSearch, menuClickHandler, handleSearch,
    currentText, currentShort, currPreloaderVisible,
-   handleCardSave, savedMoviesFlags}) {
+   handleCardSave, savedMoviesFlags, currentSearchMade}) {
 
   //calculate initial maxHeight for current resolution
   const calcHeight = () => {
@@ -92,11 +93,13 @@ export default function Movies(
          defaultText={currentText}
          defaultShort={currentShort} />
         <Preloader visible={currPreloaderVisible} />
-        <Cards cards={currentSearch} visible={!currPreloaderVisible}
+        <Cards cards={currentSearch}
          btnType="set" handleBtnClick={handleCardSave}
          savedMoviesFlags={savedMoviesFlags}
-         maxHeight={maxHeight} />
+         maxHeight={maxHeight}
+         visible={!currPreloaderVisible && currentSearchMade && currentSearch.length > 0}/>
         <Loader visible={loaderVisible && !currPreloaderVisible} setMaxHeight={setMaxHeight} />
+        <SearchNotFound visible={!currPreloaderVisible && currentSearchMade && currentSearch.length === 0} />
       </main>
       <Footer />
     </>

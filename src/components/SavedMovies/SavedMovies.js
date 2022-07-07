@@ -4,10 +4,11 @@ import Footer from '../Footer/Footer';
 import Search from '../Search/Search';
 import Cards from '../Cards/Cards';
 import Preloader from '../Preloader/Preloader';
+import SearchNotFound from '../SearchNotFound/SearchNotFound';
 
 export default function SavedMovies ({
   menuClickHandler, handleSearch, savedPreloaderVisible, handleCardDelete,
-  savedMoviesFlags, savedSearch, resetSavedSearch,
+  savedMoviesFlags, savedSearch, resetSavedSearch, checkedSaved,
    }) {
 
   const searchInputRef = createRef();
@@ -28,9 +29,10 @@ export default function SavedMovies ({
       <Search ref={ref} handleSearch={handleSearch} defaultText="" defaultShort={false} />
       <Preloader visible={savedPreloaderVisible} />
       <Cards
-         cards={savedSearch} visible={!savedPreloaderVisible}
+         cards={savedSearch} visible={!savedPreloaderVisible && checkedSaved && savedSearch.length > 0}
          btnType="delete" handleBtnClick={handleCardDelete}
          savedMoviesFlags={savedMoviesFlags} />
+      <SearchNotFound visible={!savedPreloaderVisible && checkedSaved && savedSearch.length === 0} />
       <section className="SavedMovies__divider">
       </section>
     </main>
