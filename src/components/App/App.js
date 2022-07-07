@@ -27,9 +27,9 @@ function App() {
   const [savedMovies, setSavedMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')) || []);
   const [savedMoviesFlags, setSavedMoviesFlags] = useState(JSON.parse(localStorage.getItem('savedMoviesFlags')) || {});
   const [checkedSaved, setCheckedSaved] = useState(JSON.parse(localStorage.getItem('checkedSaved')) || false);
-  const [savedSearch, setSavedSearch] = useState(JSON.parse(localStorage.getItem('savedSearch')) || []);
-  const [savedShort, setSavedShort] = useState(JSON.parse(localStorage.getItem('savedShort')) || false);
-  const [savedText, setSavedText] = useState(JSON.parse(localStorage.getItem('savedText')) || '');
+  const [savedSearch, setSavedSearch] = useState(savedMovies);
+  const [savedShort, setSavedShort] = useState(false);
+  const [savedText, setSavedText] = useState('');
   const [savedPreloaderVisible, setSavedPreloaderVisible ] = useState(false);
 
 
@@ -44,13 +44,6 @@ function App() {
     localStorage.setItem('savedMovies', JSON.stringify(result));
     localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
   }, [savedMoviesFlags, allMovies]);
-
-  //update saved search localStorage data
-  useEffect(() => {
-    localStorage.setItem('savedSearch', JSON.stringify(savedSearch));
-    localStorage.setItem('savedShort', JSON.stringify(savedShort));
-    localStorage.setItem('savedText', JSON.stringify(savedText));
-  }, [savedSearch, savedShort, savedText]);
 
   //update current search localStorage data
   useEffect(() => {
@@ -213,8 +206,6 @@ function App() {
     } else {
       setSavedSearch(filterMovies(savedMovies, searchString, short));
     }
-    setSavedShort(short);
-    setSavedText(searchString);
   };
 
   const handleProfileUpdate = (name, email) => {
@@ -252,7 +243,8 @@ function App() {
                            handleCardDelete={handleCardDelete}
                            savedMovies={savedMovies} savedMoviesFlags={savedMoviesFlags}
                            savedSearch={savedSearch} savedText={savedText} savedShort={savedShort}
-                           savedPreloaderVisible={savedPreloaderVisible} />
+                           savedPreloaderVisible={savedPreloaderVisible}
+                           resetSavedSearch={() => setSavedSearch(savedMovies)} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
