@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import EnterForm from '../EnterForm/EnterForm';
 import { useFormWithValidation } from '../FormValidate/FormValidate';
-import { Link } from 'react-router-dom';
 
 export default function Register(props) {
 
@@ -17,7 +17,7 @@ export default function Register(props) {
       <div className="EnterForm__fields">
         <label className="EnterForm__label">Имя</label>
         <input name="name" type="text" className={`EnterForm__input ${errors['name'] ? 'EnterForm__input_type_error' : ''}`}
-         placeholder="Виталий" minLength="3" maxLength="64"
+         placeholder="Виталий" minLength="2" maxLength="30"
          value={values['name'] || ''} onChange={handleChange} required/>
         <span className={`EnterForm__input-error ${!isValid ? 'EnterForm__input-error_active' : ''}`}>{errors['name']}</span>
         <label className="EnterForm__label">E-mail</label>
