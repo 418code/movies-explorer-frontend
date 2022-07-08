@@ -13,7 +13,8 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { transformData, initSaved, isEmpty, filterMovies, preloaderDelay } from '../../utils/utils';
+import { transformData, initSaved, isEmpty, filterMovies, preloaderDelay, popupSetup } from '../../utils/utils';
+import Popup from '../Popup/Popup';
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
   const [currentShort, setCurrentShort] = useState(JSON.parse(localStorage.getItem('currentShort')) || false);
   const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '');
   const [currPreloaderVisible, setCurrPreloaderVisible ] = useState(false);
+
+  const [popupOpened, setPopupOpened] = useState(false);
+  const [popupSuccess, setPopupSuccess] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
 
   //update savedMovies localStorage on flag change
   useEffect(() => {
@@ -68,6 +73,7 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
+      setPopup(popupSetup.errorMsg, false);
     })
   }, []);
 
@@ -82,6 +88,12 @@ function App() {
     return () => clearTimeout(timer);
   }, [savedSearch]);
 
+  const setPopup = (message, sussessful, opened = true) => {
+    setPopupOpened(opened);
+    setPopupSuccess(sussessful);
+    setPopupMessage(message);
+  };
+
   const handleCardSave = (card) => {
     if (savedMoviesFlags[card.movieId]) {
       api.deleteCard(savedMoviesFlags[card.movieId])
@@ -92,6 +104,7 @@ function App() {
       })
       .catch(err => {
         console.log(err);
+        setPopup(popupSetup.errorMsg, false);
       })
     } else {
       api.saveCard(card)
@@ -101,6 +114,7 @@ function App() {
       })
       .catch(err => {
         console.log(err);
+        setPopup(popupSetup.errorMsg, false);
       })
     }
   };
@@ -114,6 +128,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
+      setPopup(popupSetup.errorMsg, false);
     })
   };
 
@@ -125,6 +140,10 @@ function App() {
     api.register({name, email, password})
     .then(res => {
       handleLogin(email, password);
+    })
+    .catch(err => {
+      console.log(err);
+      setPopup(popupSetup.errorMsg, false);
     });
   };
 
@@ -137,6 +156,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
+      setPopup(popupSetup.errorMsg, false)
     });
   };
 
@@ -155,6 +175,7 @@ function App() {
     setSavedShort(false);
     setSavedText('');
     setCurrentUser({name: '', email: ''});
+    setPopup('', false, false);
     localStorage.clear();
   };
 
@@ -175,6 +196,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
+      setPopup(popupSetup.errorMsg, false)
     })
   };
 
@@ -215,9 +237,11 @@ function App() {
     api.setUserInfo({name, email})
     .then(user => {
       setCurrentUser({name, email});
+      setPopup(popupSetup.profileSuccessMsg, true);
     })
     .catch(err => {
       console.log(err);
+      setPopup(popupSetup.errorMsg, false)
     })
   };
 
@@ -254,6 +278,8 @@ function App() {
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Menu open={isMenuOpen} menuClickHandler={menuClickHandler} />
+        <Popup open={popupOpened} onClose={() => { setPopupOpened(false) }}
+          successful={popupSuccess} message={popupMessage} />
       </div>
     </CurrentUserContext.Provider>
   );

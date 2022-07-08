@@ -28,6 +28,11 @@ const cardDimensions = {
 const mobileMaxWidth = 635;//px
 const tabletMaxWidth = 1136;//px
 
+const popupSetup = {
+  profileSuccessMsg: 'Профиль успешно обновлён!',
+  errorMsg: 'Произошла ошибка!',
+};
+
 const preloaderDelay = randomIntFromInterval(300,1200); //ms
 
 function randomIntFromInterval(min, max) { // min and max included
@@ -176,4 +181,6 @@ preloaderDelay,
 cardDimensions,
 cookieDomain,
 mobileMaxWidth,
-tabletMaxWidth };
+tabletMaxWidth,
+popupSetup,
+};

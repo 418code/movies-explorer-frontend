@@ -1,0 +1,5 @@
+.Popup_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .5s linear;
+}

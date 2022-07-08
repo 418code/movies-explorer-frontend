@@ -189,3 +189,14 @@
 @import url(../src/components/SearchNotFound/SearchNotFound.css);
 @import url(../src/components/SearchNotFound/_visible/SearchNotFound_visible.css);
 @import url(../src/components/SearchNotFound/__text/SearchNotFound__text.css);
+
+/* Popup */
+@import url(../src/components/Popup/Popup.css);
+@import url(../src/components/Popup/__confirm-icon/Popup__confirm-icon.css);
+@import url(../src/components/Popup/__confirm-text/Popup__confirm-text.css);
+@import url(../src/components/Popup/__container-close-btn/Popup__container-close-btn.css);
+@import url(../src/components/Popup/_opened/Popup_opened.css);
+@import url(../src/components/Popup/_transparent/Popup_transparent_medium.css);
+@import url(../src/components/Popup/_transparent/Popup_transparent_slightly.css);
+@import url(../src/components/Popup/__container/Popup__container.css);
+@import url(../src/components/Popup/__container/_type/Popup__container_type_fixed-size-adaptive.css);
