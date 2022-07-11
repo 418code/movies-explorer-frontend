@@ -272,7 +272,7 @@ function App() {
                            savedMovies={savedMovies} savedMoviesFlags={savedMoviesFlags}
                            savedSearch={savedSearch} savedText={savedText} savedShort={savedShort}
                            savedPreloaderVisible={savedPreloaderVisible}
-                           resetSavedSearch={() => setSavedSearch(savedMovies)}
+                           setSavedSearch={setSavedSearch}
                            checkedSaved={checkedSaved} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
