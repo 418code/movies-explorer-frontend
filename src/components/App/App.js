@@ -203,8 +203,10 @@ function App() {
       console.log(err);
       if (JSON.stringify(err).indexOf('404') === -1)
         setPopup(popupSetup.errorMsg, false)
-      else
+      else {
         setCheckedSaved(true);
+        localStorage.setItem('checkedSaved', true);
+      }
     })
   };
 
