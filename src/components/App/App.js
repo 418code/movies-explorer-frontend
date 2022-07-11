@@ -186,6 +186,7 @@ function App() {
       setSavedMovies(saved);
       localStorage.setItem('checkedSaved', true);
       setCheckedSaved(true);
+      setSavedSearch(saved);
 
       return saved;
     })
