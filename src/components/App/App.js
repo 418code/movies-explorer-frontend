@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useCallback } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import NotFound from '../NotFound/NotFound';
@@ -50,6 +50,12 @@ function App() {
     localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
   }, [savedMoviesFlags, allMovies]);
 
+  //remove deleted movie from saved search
+  useEffect(() => {
+    setSavedSearch(saved => saved.filter(movie =>
+       savedMovies.find(saved => movie.movieId === saved.movieId)));
+  }, [savedMovies]);
+
   //update current search localStorage data
   useEffect(() => {
     localStorage.setItem('currentSearch', JSON.stringify(currentSearch));
@@ -99,7 +105,6 @@ function App() {
       api.deleteCard(savedMoviesFlags[card.movieId])
       .then(res => {
         setSavedMovies(saved => saved.filter(movie => movie.movieId !== card.movieId));
-        setSavedSearch(saved => saved.filter(movie => movie.movieId !== card.movieId));
         setSavedMoviesFlags({...savedMoviesFlags, [card.movieId]: false});
       })
       .catch(err => {
@@ -123,7 +128,6 @@ function App() {
     api.deleteCard(savedMoviesFlags[card.movieId])
     .then(res => {
       setSavedMovies(saved => saved.filter(movie => movie.movieId !== card.movieId));
-      setSavedSearch(saved => saved.filter(movie => movie.movieId !== card.movieId));
       setSavedMoviesFlags({...savedMoviesFlags, [card.movieId]: false});
     })
     .catch(err => {
@@ -246,6 +250,11 @@ function App() {
     })
   };
 
+  // show all saved movies in search on unmount
+  const resetSavedSearch = useCallback(() => {
+    setSavedSearch(savedMovies);
+  }, [savedMovies, setSavedSearch]);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App body__element">
@@ -269,11 +278,10 @@ function App() {
           <Route path="/saved-movies" element={
             <Private>
               <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
-                           handleCardDelete={handleCardDelete}
-                           savedMovies={savedMovies} savedMoviesFlags={savedMoviesFlags}
+                           handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
                            savedSearch={savedSearch} savedText={savedText} savedShort={savedShort}
                            savedPreloaderVisible={savedPreloaderVisible}
-                           setSavedSearch={setSavedSearch}
+                           resetSavedSearch={resetSavedSearch}
                            checkedSaved={checkedSaved} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
