@@ -201,7 +201,10 @@ function App() {
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false)
+      if (JSON.stringify(err).indexOf('404') === -1)
+        setPopup(popupSetup.errorMsg, false)
+      else
+        setCheckedSaved(true);
     })
   };
 
