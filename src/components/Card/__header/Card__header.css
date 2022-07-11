@@ -3,10 +3,14 @@
   line-height: 18px;
   font-weight: 500;
   max-width: 250px;
+  height: 18px;
   grid-row-start: 2;
   grid-column-start: 2;
   margin: 0;
   padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
