@@ -87,12 +87,12 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => setCurrPreloaderVisible(false), preloaderDelay);
     return () => clearTimeout(timer);
-  }, [currentSearch]);
+  }, [currPreloaderVisible]);
 
   useEffect(() => {
     const timer = setTimeout(() => setSavedPreloaderVisible(false), preloaderDelay);
     return () => clearTimeout(timer);
-  }, [savedSearch]);
+  }, [savedPreloaderVisible]);
 
   const setPopup = (message, sussessful, opened = true) => {
     setPopupOpened(opened);
