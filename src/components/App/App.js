@@ -50,11 +50,16 @@ function App() {
     localStorage.setItem('savedMoviesFlags', JSON.stringify(savedMoviesFlags));
   }, [savedMoviesFlags, allMovies]);
 
+  useEffect(() => {
+    localStorage.setItem('checkedSaved', checkedSaved);
+  }, [checkedSaved]);
+
   //remove deleted movie from saved search
   useEffect(() => {
-    setSavedSearch(saved => saved.filter(movie =>
-       savedMovies.find(saved => movie.movieId === saved.movieId)));
-  }, [savedMovies]);
+    // setSavedSearch(saved => saved.filter(movie =>
+    //    savedMovies.find(saved => movie.movieId === saved.movieId)));
+    setSavedSearch(filterMovies(savedMovies, savedText, savedShort));
+  }, [savedMovies, savedText, savedShort]);
 
   //update current search localStorage data
   useEffect(() => {
@@ -186,18 +191,9 @@ function App() {
   const getSavedMovies = () => {
     return api.loadSavedMovies()
     .then((saved) => {
-      localStorage.setItem('savedMovies', JSON.stringify(saved));
       setSavedMovies(saved);
-      localStorage.setItem('checkedSaved', true);
       setCheckedSaved(true);
-      setSavedSearch(saved);
-
-      return saved;
-    })
-    .then((saved) => {
-      const flags = initSaved(allMovies, saved);
-      localStorage.setItem('savedMoviesFlags', JSON.stringify(flags));
-      setSavedMoviesFlags(flags);
+      setSavedMoviesFlags(initSaved(allMovies, saved));
     })
     .catch(err => {
       console.log(err);
@@ -205,7 +201,6 @@ function App() {
         setPopup(popupSetup.errorMsg, false)
       else {
         setCheckedSaved(true);
-        localStorage.setItem('checkedSaved', true);
       }
     })
   };
@@ -236,10 +231,12 @@ function App() {
     if(isEmpty(savedMovies) && !checkedSaved) {
       getSavedMovies()
       .finally(() => {
-        setSavedSearch(filterMovies(savedMovies, searchString, short));
+        setSavedShort(short);
+        setSavedText(searchString);
       });
     } else {
-      setSavedSearch(filterMovies(savedMovies, searchString, short));
+      setSavedShort(short);
+      setSavedText(searchString);
     }
   };
 
@@ -258,7 +255,11 @@ function App() {
   // show all saved movies in search on unmount
   const resetSavedSearch = useCallback(() => {
     setSavedSearch(savedMovies);
-  }, [savedMovies, setSavedSearch]);
+  }, [savedMovies]);
+
+  const resetSavedShort = useCallback(() => { setSavedShort(false) }, []);
+
+  const resetSavedText = useCallback(() => { setSavedText('') }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -284,8 +285,8 @@ function App() {
             <Private>
               <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
                            handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
-                           savedSearch={savedSearch} savedText={savedText} savedShort={savedShort}
-                           savedPreloaderVisible={savedPreloaderVisible}
+                           savedSearch={savedSearch} savedText={savedText} resetSavedShort={resetSavedShort}
+                           savedPreloaderVisible={savedPreloaderVisible} resetSavedText={resetSavedText}
                            resetSavedSearch={resetSavedSearch}
                            checkedSaved={checkedSaved} />
             </Private>}/>

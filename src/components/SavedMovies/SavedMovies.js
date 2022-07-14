@@ -8,7 +8,7 @@ import SearchNotFound from '../SearchNotFound/SearchNotFound';
 
 export default function SavedMovies ({
   menuClickHandler, handleSearch, savedPreloaderVisible, handleCardDelete,
-  savedMoviesFlags, resetSavedSearch, savedSearch, checkedSaved,
+  savedMoviesFlags, resetSavedSearch, savedSearch, checkedSaved, resetSavedShort, resetSavedText,
    }) {
 
   const searchInputRef = createRef();
@@ -16,7 +16,15 @@ export default function SavedMovies ({
 
   const ref = {searchInputRef, searchSwitchRef};
 
-  //clear saved search on mount
+  //clear saved search on unmount
+  useEffect(() => {
+    return resetSavedText;
+  }, [resetSavedText]);
+
+  useEffect(() => {
+    return resetSavedShort;
+  }, [resetSavedShort]);
+
   useEffect(() => {
     return resetSavedSearch;
   }, [resetSavedSearch]);
