@@ -1,7 +1,7 @@
 .Loader {
   width: 100%;
   min-height: 166px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: start;
   align-items: center;

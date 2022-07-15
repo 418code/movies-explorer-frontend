@@ -1,7 +1,13 @@
 .EnterForm__input-error {
-  display: block;
+  position: relative;
+  top: -17px;
+  display: none;
   font-size: 10px;
   line-height: 12px;
   color: #EE3465;
-  visibility: hidden;
+}
+
+.EnterForm__input-error:last-of-type {
+  top: 0;
+  margin-bottom: 10px;
 }

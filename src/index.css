@@ -114,6 +114,7 @@
 
 /* Preloader block */
 @import url(../src/components/Preloader/Preloader.css);
+@import url(../src/components/Preloader/_visible/Preloader_visible.css);
 @import url(../src/components/Preloader/__container/Preloader__container.css);
 @import url(../src/components/Preloader/__round/Preloader__round.css);
 
@@ -131,6 +132,7 @@
 
 /* Cards block */
 @import url(../src/components/Cards/Cards.css);
+@import url(../src/components/Cards/_visible/Cards_visible.css);
 @import url(../src/components/Cards/__list/Cards__list.css);
 
 /* Card block */
@@ -139,11 +141,13 @@
 @import url(../src/components/Card/__time/Card__time.css);
 @import url(../src/components/Card/__button/Card__button.css);
 @import url(../src/components/Card/__button/_type/Card__button_type_set.css);
-@import url(../src/components/Card/__button/_type/Card__button_type_close.css);
+@import url(../src/components/Card/__button/_type/Card__button_type_delete.css);
 @import url(../src/components/Card/__img/Card__img.css);
+@import url(../src/components/Card/__link/Card__link.css);
 
 /* Loader block */
 @import url(../src/components/Loader/Loader.css);
+@import url(../src/components/Loader/_visible/Loader_visible.css);
 @import url(../src/components/Loader/__button/Loader__button.css);
 
 /* SavedMovies block */
@@ -160,6 +164,11 @@
 @import url(../src/components/Profile/__list/Profile__list.css);
 @import url(../src/components/Profile/__link/Profile__link.css);
 @import url(../src/components/Profile/__link/_type/Profile__link_type_bold.css);
+@import url(../src/components/Profile/__form/Profile__form.css);
+@import url(../src/components/Profile/__input/Profile__input.css);
+@import url(../src/components/Profile/__input/_type/Profile__input_type_error.css);
+@import url(../src/components/Profile/__button/Profile__button.css);
+@import url(../src/components/Profile/__button/_disabled/Profile__button_disabled.css);
 
 /* EnterForm block */
 @import url(../src/components/EnterForm/EnterForm.css);
@@ -170,7 +179,24 @@
 @import url(../src/components/EnterForm/__input/EnterForm__input.css);
 @import url(../src/components/EnterForm/__input/_type/EnterForm__input_type_error.css);
 @import url(../src/components/EnterForm/__button/EnterForm__button.css);
+@import url(../src/components/EnterForm/__button/_disabled/EnterForm__button_disabled.css);
 @import url(../src/components/EnterForm/__fields/EnterForm__fields.css);
 @import url(../src/components/EnterForm/__text/EnterForm__text.css);
 @import url(../src/components/EnterForm/__input-error/EnterForm__input-error.css);
 @import url(../src/components/EnterForm/__input-error/_active/EnterForm__input-error_active.css);
+
+/* SearchNotFound */
+@import url(../src/components/SearchNotFound/SearchNotFound.css);
+@import url(../src/components/SearchNotFound/_visible/SearchNotFound_visible.css);
+@import url(../src/components/SearchNotFound/__text/SearchNotFound__text.css);
+
+/* Popup */
+@import url(../src/components/Popup/Popup.css);
+@import url(../src/components/Popup/__confirm-icon/Popup__confirm-icon.css);
+@import url(../src/components/Popup/__confirm-text/Popup__confirm-text.css);
+@import url(../src/components/Popup/__container-close-btn/Popup__container-close-btn.css);
+@import url(../src/components/Popup/_opened/Popup_opened.css);
+@import url(../src/components/Popup/_transparent/Popup_transparent_medium.css);
+@import url(../src/components/Popup/_transparent/Popup_transparent_slightly.css);
+@import url(../src/components/Popup/__container/Popup__container.css);
+@import url(../src/components/Popup/__container/_type/Popup__container_type_fixed-size-adaptive.css);

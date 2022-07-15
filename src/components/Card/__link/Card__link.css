@@ -1,0 +1,10 @@
+.Card__link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  grid-row: 5;
+  grid-column-start: 1;
+  grid-column-end: -1;
+}

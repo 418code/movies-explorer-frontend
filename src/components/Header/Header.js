@@ -1,13 +1,18 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 import logo from '../../images/logo.svg';
 
 export default function Header(props) {
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
     <header className="Header">
       <Link to="/">
         <img src={logo} alt="логотип Movie explorer" className="Header__logo" />
       </Link>
-      {props.isLoggedIn ? <>
+      {isLoggedIn ?
+                          <>
                             <button onClick={props.menuClickHandler} className="Header__menu-btn"></button>
                             <nav className="Header__nav">
                               <ul className="Header__list">

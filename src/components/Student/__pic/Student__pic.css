@@ -4,6 +4,7 @@
   padding: 0 0 40px;
   border-radius: 10px;
   grid-area: pic;
+  justify-self: center;
 }
 
 @media (min-width: 768px) {
