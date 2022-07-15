@@ -110,3 +110,6 @@ dist
 
 #custom bash scripts
 makefiles.sh
+
+#deployed files
+build/
