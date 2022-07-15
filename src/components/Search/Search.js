@@ -1,9 +1,6 @@
-import { useState, forwardRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const Search = forwardRef((
-  {defaultText, defaultShort, handleSearch, setShort }, ref) => {
-
-  const {searchInputRef, searchSwitchRef} = ref;
+const Search = ({defaultText, defaultShort, handleSearch, setShort }) => {
 
   const [searchField, setSearchField] = useState(defaultText || '');
   const [shortField, setShortField] = useState(defaultShort || false);
@@ -31,15 +28,13 @@ const Search = forwardRef((
         <div className="Search__container">
           <input type="text" placeholder="Фильм"
            className="Search__input" value={searchField}
-           onChange={handleSearchInput} required
-           ref={searchInputRef} />
+           onChange={handleSearchInput} required />
           <button className="Search__button" onClick={handleSubmit} type="submit"></button>
         </div>
         <div className="Search__label">
           <label htmlFor="switch" className="Search__slider-box">
             <input id="switch" type="checkbox" className="Search__checkbox"
-             checked={shortField} onChange={handleShortSwitch}
-             ref={searchSwitchRef} />
+             checked={shortField} onChange={handleShortSwitch} />
             <span className="Search__slider"></span>
           </label>
           <span className="Search__label-text">Короткометражки</span>
@@ -47,6 +42,6 @@ const Search = forwardRef((
       </form>
     </section>
   );
-});
+};
 
 export default Search;

@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef} from 'react';
+import { useState, useEffect} from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Search from '../Search/Search';
@@ -83,16 +83,11 @@ export default function Movies(
       return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
-  //placeholders - not using in this component
-  const searchInputRef = createRef();
-  const searchSwitchRef = createRef();
-  const ref = {searchInputRef, searchSwitchRef};
-
   return (
     <>
       <Header menuClickHandler={menuClickHandler}  />
       <main className="Movies">
-        <Search ref={ref} handleSearch={handleSearch}
+        <Search handleSearch={handleSearch}
          defaultText={currentText}
          defaultShort={currentShort}
          searchPerformed={currentSearchMade}

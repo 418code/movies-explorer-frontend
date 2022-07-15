@@ -1,4 +1,4 @@
-import { useEffect, createRef } from 'react';
+import { useEffect } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Search from '../Search/Search';
@@ -13,11 +13,6 @@ export default function SavedMovies ({
    }) {
 
   const {search, shortSearch} = savedSearch;
-
-  const searchInputRef = createRef();
-  const searchSwitchRef = createRef();
-
-  const ref = {searchInputRef, searchSwitchRef};
 
   //clear saved search on unmount
   useEffect(() => {
@@ -40,7 +35,7 @@ export default function SavedMovies ({
     <>
     <Header menuClickHandler={menuClickHandler} />
     <main className="SavedMovies">
-      <Search ref={ref} handleSearch={handleSearch}
+      <Search handleSearch={handleSearch}
         defaultText="" defaultShort={false}
         searchPerformed={checkedSaved}
         setShort={setSavedShort} />
