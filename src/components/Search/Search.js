@@ -1,12 +1,16 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 
 const Search = forwardRef((
-  {defaultText, defaultShort, handleSearch, }, ref) => {
+  {defaultText, defaultShort, handleSearch, setShort }, ref) => {
 
   const {searchInputRef, searchSwitchRef} = ref;
 
   const [searchField, setSearchField] = useState(defaultText || '');
   const [shortField, setShortField] = useState(defaultShort || false);
+
+  useEffect(() => {
+    setShort(short => !short);
+  }, [shortField, setShort]);
 
   const handleSearchInput = (e) => {
     setSearchField(e.target.value);

@@ -11,7 +11,10 @@ import { cardDimensions, mobileMaxWidth, tabletMaxWidth } from '../../utils/util
 export default function Movies(
   {currentSearch, menuClickHandler, handleSearch,
    currentText, currentShort, currPreloaderVisible,
-   handleCardSave, savedMoviesFlags, currentSearchMade}) {
+   handleCardSave, savedMoviesFlags, currentSearchMade, setCurrentShort,
+   }) {
+
+  const {search, shortSearch} = currentSearch;
 
   //calculate initial maxHeight for current resolution
   const calcHeight = () => {
@@ -91,15 +94,19 @@ export default function Movies(
       <main className="Movies">
         <Search ref={ref} handleSearch={handleSearch}
          defaultText={currentText}
-         defaultShort={currentShort} />
+         defaultShort={currentShort}
+         searchPerformed={currentSearchMade}
+         setShort={setCurrentShort} />
         <Preloader visible={currPreloaderVisible} />
-        <Cards cards={currentSearch}
+        <Cards cards={currentShort ? shortSearch : search}
          btnType="set" handleBtnClick={handleCardSave}
          savedMoviesFlags={savedMoviesFlags}
          maxHeight={maxHeight}
-         visible={!currPreloaderVisible && currentSearchMade && currentSearch.length > 0}/>
+         visible={!currPreloaderVisible && currentSearchMade &&
+         (currentShort ? shortSearch.length > 0 : search.length > 0)}/>
         <Loader visible={loaderVisible && !currPreloaderVisible} setMaxHeight={setMaxHeight} />
-        <SearchNotFound visible={!currPreloaderVisible && currentSearchMade && currentSearch.length === 0} />
+        <SearchNotFound visible={!currPreloaderVisible && currentSearchMade &&
+         (currentShort ? shortSearch.length === 0 : search.length === 0)}/>
       </main>
       <Footer />
     </>

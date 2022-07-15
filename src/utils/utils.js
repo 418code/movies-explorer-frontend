@@ -47,11 +47,6 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
-function tokenize(input) {
-  const initString = input || '';
-  return initString.toLowerCase().replace(/[^a-z0-9_а-я\s]/g, '').split(/\s+/g);
-}
-
 /**
  * Modifies object with buildFunc
  * @param {Object} obj
@@ -128,25 +123,6 @@ function initSaved(allMovies, savedMovies) {
 const shortMovieMaxLength = 40; //min
 
 /**
- * Performs search in movies array based on parameters
- * @param {Array} movies
- * @param {String} searchString
- * @param {Boolean} short
- * @returns {Array}
- */
-function filterMovies(movies, searchString, short) {
-  const tokens = tokenize(searchString);
-  const checker = value =>
-    tokens.some(element => value.includes(element));
-
-  return movies.filter(
-    obj => ((tokenize(obj.nameRU).filter(checker).length > 0)
-     || (tokenize(obj.nameEN).filter(checker).length > 0))
-     && (short ? (parseInt(obj.duration) <= shortMovieMaxLength) : true)
-  )
-}
-
-/**
  * Prepares movie duration in "_h _m"/"_h"/"_m" format
  * @param {Number} duration
  * @returns {String}
@@ -172,10 +148,8 @@ apiConfig,
 moviesApiConfig,
 isTrue,
 isEmpty,
-tokenize,
 transformData,
 initSaved,
-filterMovies,
 convertDuration,
 preloaderDelay,
 cardDimensions,
@@ -183,4 +157,5 @@ cookieDomain,
 mobileMaxWidth,
 tabletMaxWidth,
 popupSetup,
+shortMovieMaxLength,
 };

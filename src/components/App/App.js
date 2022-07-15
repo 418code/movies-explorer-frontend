@@ -13,7 +13,7 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { transformData, initSaved, isEmpty, filterMovies, preloaderDelay, popupSetup } from '../../utils/utils';
+import { transformData, initSaved, isEmpty, preloaderDelay, popupSetup, shortMovieMaxLength } from '../../utils/utils';
 import Popup from '../Popup/Popup';
 
 function App() {
@@ -28,13 +28,13 @@ function App() {
   const [savedMovies, setSavedMovies] = useState(JSON.parse(localStorage.getItem('savedMovies')) || []);
   const [savedMoviesFlags, setSavedMoviesFlags] = useState(JSON.parse(localStorage.getItem('savedMoviesFlags')) || {});
   const [checkedSaved, setCheckedSaved] = useState(JSON.parse(localStorage.getItem('checkedSaved')) || false);
-  const [savedSearch, setSavedSearch] = useState(savedMovies);
+  const [savedSearch, setSavedSearch] = useState({search: [], shortSearch: []});
   const [savedShort, setSavedShort] = useState(false);
   const [savedText, setSavedText] = useState('');
   const [savedPreloaderVisible, setSavedPreloaderVisible ] = useState(false);
 
   const [currentSearchMade, setCurrentSearchMade] = useState(JSON.parse(localStorage.getItem('currentSearchMade')) || false);
-  const [currentSearch, setCurrentSearch] = useState(JSON.parse(localStorage.getItem('currentSearch')) || []);
+  const [currentSearch, setCurrentSearch] = useState(JSON.parse(localStorage.getItem('currentSearch')) || {search: [], shortSearch: []});
   const [currentShort, setCurrentShort] = useState(JSON.parse(localStorage.getItem('currentShort')) || false);
   const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '');
   const [currPreloaderVisible, setCurrPreloaderVisible ] = useState(false);
@@ -42,6 +42,25 @@ function App() {
   const [popupOpened, setPopupOpened] = useState(false);
   const [popupSuccess, setPopupSuccess] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
+
+  //main search logic
+  const filterMovies = useCallback((movies, searchString) => {
+    const tokenize = (input) => {
+      const initString = input || '';
+      return initString.toLowerCase().replace(/[^a-z0-9_а-я\s]/g, '').split(/\s+/g);
+    };
+
+    const tokens = tokenize(searchString);
+    const checker = value =>
+      tokens.some(element => value.includes(element));
+
+    const search = movies.filter((obj) => ((tokenize(obj.nameRU).filter(checker).length > 0) ||
+     (tokenize(obj.nameEN).filter(checker).length > 0)));
+
+    const shortSearch =  search.filter(obj => (parseInt(obj.duration) <= shortMovieMaxLength));
+
+    return {search, shortSearch};
+  }, []);
 
   //update savedMovies localStorage on flag change
   useEffect(() => {
@@ -54,12 +73,10 @@ function App() {
     localStorage.setItem('checkedSaved', checkedSaved);
   }, [checkedSaved]);
 
-  //remove deleted movie from saved search
+  //remove deleted movie from saved search && init saved search
   useEffect(() => {
-    // setSavedSearch(saved => saved.filter(movie =>
-    //    savedMovies.find(saved => movie.movieId === saved.movieId)));
-    setSavedSearch(filterMovies(savedMovies, savedText, savedShort));
-  }, [savedMovies, savedText, savedShort]);
+    setSavedSearch(filterMovies(savedMovies, savedText));
+  }, [savedMovies, savedText, filterMovies]);
 
   //update current search localStorage data
   useEffect(() => {
@@ -177,10 +194,10 @@ function App() {
     setSavedMovies([]);
     setCheckedSaved(false);
     setCurrentSearchMade(false);
-    setCurrentSearch([]);
+    setCurrentSearch({search: [], shortSearch: []});
     setCurrentShort(false);
     setCurrentText('');
-    setSavedSearch([]);
+    setSavedSearch({search: [], shortSearch: []});
     setSavedShort(false);
     setSavedText('');
     setCurrentUser({name: '', email: ''});
@@ -213,10 +230,10 @@ function App() {
     if(isEmpty(savedMovies) && !checkedSaved) {
       getSavedMovies()
       .finally(() => {
-        setCurrentSearch(filterMovies(allMovies, searchString, short));
+        setCurrentSearch(filterMovies(allMovies, searchString));
       });
     } else {
-      setCurrentSearch(filterMovies(allMovies, searchString, short));
+      setCurrentSearch(filterMovies(allMovies, searchString));
     }
     setCurrentShort(short);
     setCurrentText(searchString);
@@ -231,11 +248,9 @@ function App() {
     if(isEmpty(savedMovies) && !checkedSaved) {
       getSavedMovies()
       .finally(() => {
-        setSavedShort(short);
         setSavedText(searchString);
       });
     } else {
-      setSavedShort(short);
       setSavedText(searchString);
     }
   };
@@ -248,14 +263,14 @@ function App() {
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false)
+      setPopup(popupSetup.errorMsg, false);
     })
   };
 
   // show all saved movies in search on unmount
   const resetSavedSearch = useCallback(() => {
-    setSavedSearch(savedMovies);
-  }, [savedMovies]);
+    setSavedSearch(filterMovies(savedMovies, ''));
+  }, [savedMovies, filterMovies]);
 
   const resetSavedShort = useCallback(() => { setSavedShort(false) }, []);
 
@@ -273,6 +288,7 @@ function App() {
               <Movies menuClickHandler={menuClickHandler} handleSearch={handleSearch}
                       currentSearch={currentSearch} handleCardSave={handleCardSave}
                       currentText={currentText} currentShort={currentShort}
+                      setCurrentShort={setCurrentShort}
                       savedMoviesFlags={savedMoviesFlags}
                       currPreloaderVisible={currPreloaderVisible}
                       currentSearchMade={currentSearchMade} />
@@ -287,8 +303,10 @@ function App() {
                            handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
                            savedSearch={savedSearch} savedText={savedText} resetSavedShort={resetSavedShort}
                            savedPreloaderVisible={savedPreloaderVisible} resetSavedText={resetSavedText}
-                           resetSavedSearch={resetSavedSearch}
-                           checkedSaved={checkedSaved} />
+                           resetSavedSearch={resetSavedSearch} savedShort={savedShort} setSavedShort={setSavedShort}
+                           checkedSaved={checkedSaved}
+                           savedMovies={savedMovies}
+                           setSavedMovies={setSavedMovies}/>
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
