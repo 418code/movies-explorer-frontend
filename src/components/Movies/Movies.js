@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Search from '../Search/Search';
@@ -17,10 +17,10 @@ export default function Movies(
   const {search, shortSearch} = currentSearch;
 
   //calculate initial maxHeight for current resolution
-  const calcHeight = () => {
+  const calcHeight = useCallback(() => {
     const width = window.innerWidth;
 
-    //calc initila maxHeight for a single resolution
+    //calc initial maxHeight for a single resolution
     const calcDimHeight = (width) => {
       return Math.floor(
         cardDimensions[width].height*cardDimensions[width].initialRows) +
@@ -35,11 +35,11 @@ export default function Movies(
     } else if (width > tabletMaxWidth) {
       return calcDimHeight(1280);
     }
-  };
+  }, []);
 
 
   //calculate height of all cards for this resolution
-  const calcTotalHeight = (numCards) => {
+  const calcTotalHeight = useCallback((numCards) => {
     const width = window.innerWidth;
 
     //calculates max height for 320/768/1280 width and given number of cards
@@ -56,7 +56,7 @@ export default function Movies(
     } else if (width > tabletMaxWidth) {
       return calcMaxHeight(1280, numCards / 3);
     }
-  };
+  }, []);
 
   const [maxHeight, setMaxHeight] = useState(calcHeight);
   const [loaderVisible, setLoaderVisible] = useState(true);
@@ -64,13 +64,14 @@ export default function Movies(
   //reset maxHeight on search
   useEffect(() => {
     setMaxHeight(calcHeight());
-  }, [currentSearch]);
+  }, [currentSearch, calcHeight]);
 
   //hide loader when all cards visible
   useEffect(() =>{
-    const totalHeight = calcTotalHeight(currentSearch.length);
+    const totalHeight = calcTotalHeight(
+      currentShort ? shortSearch.length : search.length);
     setLoaderVisible(maxHeight < totalHeight);
-  }, [maxHeight, currentSearch]);
+  }, [maxHeight, shortSearch, search, currentShort, calcTotalHeight]);
 
 
   //set initial maxHeight on resize
@@ -81,7 +82,7 @@ export default function Movies(
 
       window.addEventListener("resize", updateDimensions);
       return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
+  }, [calcHeight]);
 
   return (
     <>

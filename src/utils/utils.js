@@ -25,7 +25,7 @@ const cardDimensions = {
         initialRows: 4},
 };
 
-const mobileMaxWidth = 635;//px
+const mobileMaxWidth = 768;//px
 const tabletMaxWidth = 1136;//px
 
 const popupSetup = {
