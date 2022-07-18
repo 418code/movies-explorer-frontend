@@ -28,7 +28,7 @@ const cardDimensions = {
 };
 
 const mobileMaxWidth = 768;//px
-const tabletMaxWidth = 1136;//px
+const tabletMaxWidth = 1280;//px
 
 const popupSetup = {
   profileSuccessMsg: {
