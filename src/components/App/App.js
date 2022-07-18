@@ -39,9 +39,8 @@ function App() {
   const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '');
   const [currPreloaderVisible, setCurrPreloaderVisible ] = useState(false);
 
+  const [popupContent, setPopupContent] = useState({success: false, message: ''});
   const [popupOpened, setPopupOpened] = useState(false);
-  const [popupSuccess, setPopupSuccess] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
 
   //main search logic
   const filterMovies = useCallback((movies, searchString) => {
@@ -101,7 +100,7 @@ function App() {
     })
     .catch((err) => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false);
+      showFailPopup();
     })
   }, []);
 
@@ -116,10 +115,14 @@ function App() {
     return () => clearTimeout(timer);
   }, [savedPreloaderVisible]);
 
-  const setPopup = (message, sussessful, opened = true) => {
-    setPopupOpened(opened);
-    setPopupSuccess(sussessful);
-    setPopupMessage(message);
+  //make sure icon changes before opening
+  useEffect(() => {
+    if (popupContent.message !== '')
+      setPopupOpened(true);
+  }, [popupContent]);
+
+  const showFailPopup = () => {
+    setPopupContent({message: popupSetup.errorMsg[currentUser.lang],  success: false});
   };
 
   const handleCardSave = (card) => {
@@ -131,7 +134,7 @@ function App() {
       })
       .catch(err => {
         console.log(err);
-        setPopup(popupSetup.errorMsg, false);
+        showFailPopup();
       })
     } else {
       api.saveCard(card)
@@ -141,7 +144,7 @@ function App() {
       })
       .catch(err => {
         console.log(err);
-        setPopup(popupSetup.errorMsg, false);
+        showFailPopup();
       })
     }
   };
@@ -154,7 +157,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false);
+      showFailPopup();
     })
   };
 
@@ -169,7 +172,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false);
+      showFailPopup();
     });
   };
 
@@ -182,7 +185,7 @@ function App() {
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false)
+      showFailPopup();
     });
   };
 
@@ -200,8 +203,8 @@ function App() {
     setSavedSearch({search: [], shortSearch: []});
     setSavedShort(false);
     setSavedText('');
-    setCurrentUser({name: '', email: ''});
-    setPopup('', false, false);
+    setPopupContent({message: '', success: false});
+    setPopupOpened(false);
     localStorage.clear();
   };
 
@@ -215,7 +218,7 @@ function App() {
     .catch(err => {
       console.log(err);
       if (JSON.stringify(err).indexOf('404') === -1)
-        setPopup(popupSetup.errorMsg, false)
+        showFailPopup();
       else {
         setCheckedSaved(true);
       }
@@ -259,11 +262,11 @@ function App() {
     api.setUserInfo({name, email})
     .then(user => {
       setCurrentUser({name, email});
-      setPopup(popupSetup.profileSuccessMsg, true);
+      setPopupContent({message: popupSetup.profileSuccessMsg[currentUser.lang], success: true});
     })
     .catch(err => {
       console.log(err);
-      setPopup(popupSetup.errorMsg, false);
+      showFailPopup();
     })
   };
 
@@ -311,8 +314,8 @@ function App() {
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Menu open={isMenuOpen} menuClickHandler={menuClickHandler} />
-        <Popup open={popupOpened} onClose={() => { setPopupOpened(false) }}
-          successful={popupSuccess} message={popupMessage} />
+          <Popup popupContent={popupContent} isPopupOpened={popupOpened}
+           onClose={ () => { setPopupOpened(false)} } />
       </div>
     </CurrentUserContext.Provider>
   );

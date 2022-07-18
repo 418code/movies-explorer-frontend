@@ -1,3 +1,5 @@
+import { LOCALES } from "../i18n";
+
 const apiConfig = {
   baseUrl: (process.env.NODE_ENV === 'production') ? 'https://api.movies.418co.de/' : 'http://localhost:3000/',
   appJSONType: 'application/json'
@@ -29,8 +31,14 @@ const mobileMaxWidth = 768;//px
 const tabletMaxWidth = 1136;//px
 
 const popupSetup = {
-  profileSuccessMsg: 'Профиль успешно обновлён!',
-  errorMsg: 'Произошла ошибка!',
+  profileSuccessMsg: {
+    [LOCALES.RUSSIAN]: 'Профиль успешно обновлён!',
+    [LOCALES.ENGLISH]: 'Profile successfully updated!'
+  },
+  errorMsg: {
+    [LOCALES.ENGLISH]: 'An error happened!',
+    [LOCALES.RUSSIAN]:  'Произошла ошибка!',
+  }
 };
 
 const preloaderDelay = randomIntFromInterval(300,1200); //ms
