@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect, useCallback } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { LocaleContext } from '../../contexts/LocaleContext';
 import NotFound from '../NotFound/NotFound';
 import Menu from '../Menu/Menu';
 import Landing from '../Landing/Landing';
@@ -13,13 +14,16 @@ import { api } from '../../utils/api';
 import { AuthContext } from '../../contexts/AuthContext';
 import Private from '../../components/Private/Private';
 import moviesApi from '../../utils/moviesApi';
-import { transformData, initSaved, isEmpty, preloaderDelay, popupSetup, shortMovieMaxLength } from '../../utils/utils';
+import { transformData, initSaved, isEmpty, preloaderDelay, shortMovieMaxLength } from '../../utils/utils';
 import Popup from '../Popup/Popup';
+import { LOCALES } from '../../i18n';
+import { useIntl } from 'react-intl';
+import { Helmet } from 'react-helmet-async';
 
 function App() {
 
   //context state variables
-  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')) || { name: '', email: '' });
+  const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('currentUser')) || { name: '', email: '', locale: LOCALES.ENGLISH });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { setupIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -39,7 +43,10 @@ function App() {
   const [currentText, setCurrentText] = useState(JSON.parse(localStorage.getItem('currentText')) || '');
   const [currPreloaderVisible, setCurrPreloaderVisible ] = useState(false);
 
-  const [popupContent, setPopupContent] = useState({success: false, message: ''});
+  const {changeLocale} = useContext(LocaleContext);
+  const intl = useIntl();
+
+  const [popupContent, setPopupContent] = useState({success: false, message: intl.formatMessage({id: 'blank'})});
   const [popupOpened, setPopupOpened] = useState(false);
 
   //main search logic
@@ -88,7 +95,14 @@ function App() {
   //update current user localStorage data
   useEffect(() => {
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  });
+    changeLocale(currentUser.locale);
+  }, [currentUser, changeLocale]);
+
+  const showFailPopup = useCallback(() => {
+    setPopupContent({
+      message: intl.formatMessage({id: 'error_msg'}),
+      success: false});
+  }, [intl]);
 
   //preload public api data
   useEffect(() => {
@@ -102,7 +116,7 @@ function App() {
       console.log(err);
       showFailPopup();
     })
-  }, []);
+  }, [showFailPopup]);
 
   //wait random time before hiding preloaders
   useEffect(() => {
@@ -117,13 +131,9 @@ function App() {
 
   //make sure icon changes before opening
   useEffect(() => {
-    if (popupContent.message !== '')
+    if (popupContent.message !== 'blank')
       setPopupOpened(true);
   }, [popupContent]);
-
-  const showFailPopup = () => {
-    setPopupContent({message: popupSetup.errorMsg[currentUser.lang],  success: false});
-  };
 
   const handleCardSave = (card) => {
     if (savedMoviesFlags[card.movieId]) {
@@ -180,7 +190,7 @@ function App() {
     api.signIn({ email, password })
     .then(user => {
       setupIsLoggedIn(true);
-      setCurrentUser({name: user.data.name, email: user.data.email})
+      setCurrentUser({name: user.data.name, email: user.data.email, locale: user.data.locale})
       navigate('/movies');
     })
     .catch(err => {
@@ -203,7 +213,8 @@ function App() {
     setSavedSearch({search: [], shortSearch: []});
     setSavedShort(false);
     setSavedText('');
-    setPopupContent({message: '', success: false});
+    setCurrentUser({name: '', email: '', locale: LOCALES.ENGLISH});
+    setPopupContent({message: intl.formatMessage({id: 'blank'}), success: false});
     setPopupOpened(false);
     localStorage.clear();
   };
@@ -258,11 +269,13 @@ function App() {
     }
   };
 
-  const handleProfileUpdate = (name, email) => {
-    api.setUserInfo({name, email})
+  const handleProfileUpdate = (name, email, locale) => {
+    api.setUserInfo({name, email, locale})
     .then(user => {
-      setCurrentUser({name, email});
-      setPopupContent({message: popupSetup.profileSuccessMsg[currentUser.lang], success: true});
+      setCurrentUser({name, email, locale});
+      setPopupContent({
+        message: intl.formatMessage({id: 'profile_success_msg'}),
+        success: true});
     })
     .catch(err => {
       console.log(err);
@@ -280,8 +293,13 @@ function App() {
   const resetSavedText = useCallback(() => { setSavedText('') }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
       <div className="App body__element">
+        <Helmet>
+          <html lang={intl.formatMessage({id: 'lang', defaultMessage: 'ru'})} />
+          <title>{intl.formatMessage({id: 'app_title', defaultMessage: 'Фильмоскоп'})}</title>
+          <noscript>{intl.formatMessage({id: 'noscript', defaultMessage: 'Вам нужно включить Javascript, чтобы запустить это приложение.'})}</noscript>
+        </Helmet>
         <Routes>
           <Route path="/" element={<Landing menuClickHandler={menuClickHandler} />}/>
           <Route path="/signup" element={<Register handleRegister={handleRegister} />}/>
@@ -298,24 +316,26 @@ function App() {
             </Private>}/>
           <Route path="/profile" element={
             <Private>
-              <Profile menuClickHandler={menuClickHandler} handleLogout={handleLogout} handleProfileUpdate={handleProfileUpdate} />
+              <Profile menuClickHandler={menuClickHandler}
+                handleLogout={handleLogout}
+                handleProfileUpdate={handleProfileUpdate} />
             </Private>}/>
           <Route path="/saved-movies" element={
             <Private>
               <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
-                           handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
-                           savedSearch={savedSearch} savedText={savedText} resetSavedShort={resetSavedShort}
-                           savedPreloaderVisible={savedPreloaderVisible} resetSavedText={resetSavedText}
-                           resetSavedSearch={resetSavedSearch} savedShort={savedShort} setSavedShort={setSavedShort}
-                           checkedSaved={checkedSaved}
-                           savedMovies={savedMovies}
-                           setSavedMovies={setSavedMovies}/>
+                          handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
+                          savedSearch={savedSearch} savedText={savedText} resetSavedShort={resetSavedShort}
+                          savedPreloaderVisible={savedPreloaderVisible} resetSavedText={resetSavedText}
+                          resetSavedSearch={resetSavedSearch} savedShort={savedShort} setSavedShort={setSavedShort}
+                          checkedSaved={checkedSaved}
+                          savedMovies={savedMovies}
+                          setSavedMovies={setSavedMovies} />
             </Private>}/>
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Menu open={isMenuOpen} menuClickHandler={menuClickHandler} />
-          <Popup popupContent={popupContent} isPopupOpened={popupOpened}
-           onClose={ () => { setPopupOpened(false)} } />
+        <Popup popupContent={popupContent} isPopupOpened={popupOpened}
+          onClose={ () => { setPopupOpened(false)} } />
       </div>
     </CurrentUserContext.Provider>
   );

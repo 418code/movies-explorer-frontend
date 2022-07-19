@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
@@ -7,6 +8,7 @@ import logo from '../../images/logo.svg';
 export default function EnterForm(props) {
 
   const { isLoggedIn } = useContext(AuthContext);
+  const intl = useIntl();
 
   return isLoggedIn ?
       <Navigate to="/" />
@@ -15,7 +17,7 @@ export default function EnterForm(props) {
       <div className="EnterForm">
         <header className="EnterForm__header">
           <Link to="/">
-            <img src={logo} alt="логотип" />
+            <img src={logo} alt={intl.formatMessage({id: 'logo', defaultMessage: 'логотип'})} />
           </Link>
           <h1 className="App__header">{props.formHeader}</h1>
         </header>

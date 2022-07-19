@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 import AuthWrapper from './components/AuthWrapper/AuthWrapper';
 import { CookiesProvider } from 'react-cookie';
+import { I18nProvider } from './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +15,11 @@ root.render(
     <BrowserRouter>
       <AuthWrapper>
         <CookiesProvider>
-          <App />
+          <I18nProvider>
+            <HelmetProvider>
+              <App />
+            </HelmetProvider>
+          </I18nProvider>
         </CookiesProvider>
       </AuthWrapper>
     </BrowserRouter>

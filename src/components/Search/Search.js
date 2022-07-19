@@ -1,9 +1,11 @@
+import { useIntl } from 'react-intl';
 import { useState, useEffect } from 'react';
 
-const Search = ({defaultText, defaultShort, handleSearch, setShort }) => {
+const Search = ({defaultText, defaultShort, handleSearch, setShort}) => {
 
   const [searchField, setSearchField] = useState(defaultText || '');
   const [shortField, setShortField] = useState(defaultShort || false);
+  const intl = useIntl();
 
   useEffect(() => {
     setShort(short => !short);
@@ -26,7 +28,7 @@ const Search = ({defaultText, defaultShort, handleSearch, setShort }) => {
     <section className="Search">
       <form className="Search__form">
         <div className="Search__container">
-          <input type="text" placeholder="Фильм"
+          <input type="text" placeholder={intl.formatMessage({id: 'film', defaultMessage: 'Фильм'})}
            className="Search__input" value={searchField}
            onChange={handleSearchInput} required />
           <button className="Search__button" onClick={handleSubmit} type="submit"></button>
@@ -37,7 +39,9 @@ const Search = ({defaultText, defaultShort, handleSearch, setShort }) => {
              checked={shortField} onChange={handleShortSwitch} />
             <span className="Search__slider"></span>
           </label>
-          <span className="Search__label-text">Короткометражки</span>
+          <span className="Search__label-text">
+            {intl.formatMessage({id: 'shorts', defaultMessage:'Короткометражки'})}
+          </span>
         </div>
       </form>
     </section>

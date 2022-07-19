@@ -99,6 +99,7 @@
 @import url(../src/components/Student/__header/Student__header.css);
 @import url(../src/components/Student/__text/Student__text.css);
 @import url(../src/components/Student/__text/_weight/Student__text_weight_bold.css);
+@import url(../src/components/Student/__text/_area/Student__text_area_418.css);
 @import url(../src/components/Student/__subheader/Student__subheader.css);
 @import url(../src/components/Student/__article/Student__article.css);
 @import url(../src/components/Student/__miniheader/Student__miniheader.css);
@@ -158,7 +159,6 @@
 @import url(../src/components/Profile/Profile.css);
 @import url(../src/components/Profile/__table/Profile__table.css);
 @import url(../src/components/Profile/__row/Profile__row.css);
-@import url(../src/components/Profile/__row/_position/Profile__row_position_top.css);
 @import url(../src/components/Profile/__cell/Profile__cell.css);
 @import url(../src/components/Profile/__header/Profile__header.css);
 @import url(../src/components/Profile/__list/Profile__list.css);
@@ -169,6 +169,7 @@
 @import url(../src/components/Profile/__input/_type/Profile__input_type_error.css);
 @import url(../src/components/Profile/__button/Profile__button.css);
 @import url(../src/components/Profile/__button/_disabled/Profile__button_disabled.css);
+@import url(../src/components/Profile/__select/Profile__select.css);
 
 /* EnterForm block */
 @import url(../src/components/EnterForm/EnterForm.css);
