@@ -1,6 +1,10 @@
 .Student__text {
+  padding: 0 0 20px;
+  grid-area: about;
+}
+
+.Student__text:last-of-type {
   padding: 0 0 40px;
-  grid-area: text;
 }
 
 @media (min-width: 1280px) {

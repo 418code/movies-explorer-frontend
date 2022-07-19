@@ -6,19 +6,21 @@
     "pic"
     "header"
     "subheader"
-    "text"
+    "about"
+    "teapot"
     "social";
   padding: 0 0 69px;
 }
 
 @media (min-width: 768px) {
   .Student__article {
-    grid-template-rows: 56px 38px 195px 18px;
+    grid-template-rows: 56px 38px 1fr 70px 18px;
     grid-template-columns: 364px 1fr;
     grid-template-areas:
       "header pic"
       "subheader pic"
-      "text pic"
+      "about pic"
+      "teapot pic"
       "social pic";
     padding: 0 0 90px;
   }
@@ -26,7 +28,7 @@
 
 @media (min-width: 1280px) {
   .Student__article {
-    grid-template-rows: 76px 46px 187px 17px;
+    grid-template-rows: 76px 46px 1fr 70px 17px;
     grid-template-columns: 600px 1fr;
     padding: 0 0 100px;
   }
