@@ -288,8 +288,6 @@ function App() {
     setSavedSearch(filterMovies(savedMovies, ''));
   }, [savedMovies, filterMovies]);
 
-  const resetSavedShort = useCallback(() => { setSavedShort(false) }, []);
-
   const resetSavedText = useCallback(() => { setSavedText('') }, []);
 
   return (
@@ -324,7 +322,7 @@ function App() {
             <Private>
               <SavedMovies menuClickHandler={menuClickHandler} handleSearch={handleSavedSearch}
                           handleCardDelete={handleCardDelete} savedMoviesFlags={savedMoviesFlags}
-                          savedSearch={savedSearch} savedText={savedText} resetSavedShort={resetSavedShort}
+                          savedSearch={savedSearch} savedText={savedText}
                           savedPreloaderVisible={savedPreloaderVisible} resetSavedText={resetSavedText}
                           resetSavedSearch={resetSavedSearch} savedShort={savedShort} setSavedShort={setSavedShort}
                           checkedSaved={checkedSaved}

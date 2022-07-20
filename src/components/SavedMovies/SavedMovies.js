@@ -8,7 +8,7 @@ import SearchNotFound from '../SearchNotFound/SearchNotFound';
 
 export default function SavedMovies ({
   menuClickHandler, handleSearch, savedPreloaderVisible, handleCardDelete,
-  savedMoviesFlags, resetSavedSearch, savedSearch, checkedSaved, resetSavedShort, resetSavedText,
+  savedMoviesFlags, resetSavedSearch, savedSearch, checkedSaved, resetSavedText,
   savedShort, setSavedShort,
    }) {
 
@@ -18,10 +18,6 @@ export default function SavedMovies ({
   useEffect(() => {
     return resetSavedText;
   }, [resetSavedText]);
-
-  useEffect(() => {
-    return resetSavedShort;
-  }, [resetSavedShort]);
 
   useEffect(() => {
     return resetSavedSearch;

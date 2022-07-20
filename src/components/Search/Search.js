@@ -8,7 +8,7 @@ const Search = ({defaultText, defaultShort, handleSearch, setShort}) => {
   const intl = useIntl();
 
   useEffect(() => {
-    setShort(short => !short);
+    setShort(shortField);
   }, [shortField, setShort]);
 
   const handleSearchInput = (e) => {
