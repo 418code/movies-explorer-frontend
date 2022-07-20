@@ -1,7 +1,14 @@
 import { useIntl } from 'react-intl';
+import htmlLogo from '../../images/html5.svg';
+import cssLogo from '../../images/css3.svg';
+import jsLogo from '../../images/js.svg';
+import reactLogo from '../../images/react.svg';
+import githubLogo from '../../images/github.svg';
+import expressLogo from '../../images/express.svg';
+import mongoDBLogo from '../../images/mongodb.svg';
 
 export default function Tech(props) {
-  const techs = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
+  const logos = [htmlLogo, cssLogo, jsLogo, reactLogo, githubLogo, expressLogo, mongoDBLogo];
   const intl = useIntl();
 
   return (
@@ -17,7 +24,7 @@ export default function Tech(props) {
           defaultMessage: 'На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.'})}
       </p>
       <ul className="Tech__list">
-        {techs.map(tech => <li key={tech}><p className="Tech__tile">{tech}</p></li>)}
+        {logos.map(tech => <li key={tech}><img src={tech} alt="tech logo" className="Tech__logo" /></li>)}
       </ul>
     </section>
   );

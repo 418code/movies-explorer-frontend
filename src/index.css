@@ -95,6 +95,7 @@
 @import url(../src/components/Tech/__text/Tech__text.css);
 @import url(../src/components/Tech/__tile/Tech__tile.css);
 @import url(../src/components/Tech/__list/Tech__list.css);
+@import url(../src/components/Tech/__logo/Tech__logo.css);
 
 /* Student block */
 @import url(../src/components/Student/Student.css);
