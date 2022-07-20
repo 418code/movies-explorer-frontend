@@ -25,7 +25,7 @@ export const en = {
     "about_me": "I got inspired to become a web developer while testing <sdc>Google's self-driving cars</sdc> as a contractor in Silicon Valley. Taking a <chm>tour of Computer History museum</chm>, and going to various conferences also added to my motivation. I'm originally from Russia and one can say that <yndx>Yandex</yndx> is Google's Russian cousin. That's why I decided to study web development with <ypen>Yandex Practicum</ypen> (<ypru>Russian branch</ypru>) - their educational startup. I like to write code using Oculus Quest 2 VR headset, nature, meditation, music and improv comedy. I got my Bachelor's in Business Administration from University of Connecticut.",
     "account": "Account",
     "alrdy_registered": "Already registered?",
-    "app_title": "FilmGazer",
+    "app_title": "Movies explorer",
     "back": "Back",
     "blank": "blank",
     "edit": "Edit",
