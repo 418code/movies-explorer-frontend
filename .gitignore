@@ -113,3 +113,6 @@ makefiles.sh
 
 #deployed files
 build/
+
+#formatjs output
+src/i18n/messages/ru.json
