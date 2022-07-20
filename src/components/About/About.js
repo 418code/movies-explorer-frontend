@@ -1,39 +1,87 @@
+import { useIntl, FormattedMessage } from 'react-intl';
+
 export default function About() {
+
+  const intl = useIntl();
+
+  const feIds = ['about.figma', 'about.routes', 'about.httponly',
+   'about.profile', 'about.valid', 'about.data', 'about.search', 'about.preview',
+   'about.loader', 'about.savecards', 'about.localstorage', 'about.bem', 'about.domain'];
+
+  const beIds = ['about.node', 'about.mongo', 'about.security', 'about.domain_back'];
+
   return (
     <section id="about" className="About Landing__section">
       <h2 className="Landing__subheader Landing__subheader_position_top">
-        О проекте
+        {intl.formatMessage({id: 'about'})}
       </h2>
       <div className="About__container">
         <h3 className="Landing__subheader">
-          Дипломный проект включал 5 этапов
+          {intl.formatMessage({id: 'proj_goal', defaultMessage: 'Цель проекта'})}
         </h3>
         <p className="Landing__text">
-          Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
+          <FormattedMessage id="proj_goal_desc" defaultMessage={`Сделать простой поиск по списку 100 фильмов
+           с <beat>публичного api</beat> и предоставить результат в виде карточек, при клике на которые открываются
+            youtube трейлеры, со способностью сохранять и искать сохранённые фильмы для каждого зарегистрированного
+             пользователя.`} values={{
+              beat: chunks => (
+                <a
+                  className="App__link App__link_weight_bold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://api.nomoreparties.co/beatfilm-movies"
+                >
+                {chunks}
+                </a>),
+             }} />
         </p>
         <h3 className="Landing__subheader">
-          На выполнение диплома ушло 5 недель
+          {intl.formatMessage({id: 'proj_steps', defaultMessage: 'Этапы проекта'})}
         </h3>
         <p className="Landing__text">
-          У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
+          {intl.formatMessage({id: 'proj_steps_desc', defaultMessage: 'Составление плана, работа над бэкендом, вёрстка, добавление функциональности и финальные доработки.'})}
         </p>
       </div>
-      <table className="About__table">
-        <colgroup>
-          <col className="About__col"/>
-          <col/>
-        </colgroup>
-        <tbody>
-          <tr className="About__row">
-            <td className="About__cell About__cell_color_green">1 неделя</td>
-            <td className="About__cell About__cell_color_beige">4 недели</td>
-          </tr>
-          <tr className="About__row About__row_font_light">
-            <td className="About__cell">Back-end</td>
-            <td className="About__cell">Front-end</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="About__container">
+        <h3 className="Landing__subheader">
+          <a href="https://api.movies.418co.de" target="_blank" rel="noopener noreferrer" className="App__link">Back end / api.movies.418co.de</a>
+        </h3>
+        <ul className="App__list Landing__text About__list">
+          {beIds.map(id =>
+            <li className="About__list-item About__list-item_spread" key={id}>
+              <FormattedMessage id={id} />
+            </li>)}
+        </ul>
+        <h3 className="Landing__subheader">
+          <a href="https://movies.418co.de" target="_blank" rel="noopener noreferrer"className="App__link">Front end / movies.418co.de</a>
+        </h3>
+        <ul className="App__list Landing__text About__list">
+          {feIds.map(id =>
+            <li className="About__list-item" key={id}>
+              <FormattedMessage id={id} values={{
+                figma: chunks => (
+                  <a
+                    className="App__link App__link_weight_bold"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.figma.com/file/E1rryxHLMEKjSFYM7ddN3m/?node-id=891%3A3857"
+                  >
+                  {chunks}
+                  </a>),
+                bem: chunks => (
+                  <a
+                    className="App__link App__link_weight_bold"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://en.bem.info/methodology/quick-start/"
+                  >
+                  {chunks}
+                  </a>),
+                }}/>
+            </li>
+          )}
+        </ul>
+      </div>
     </section>
   );
 }

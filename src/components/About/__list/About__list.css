@@ -1,0 +1,14 @@
+.About__list {
+  flex-direction: column;
+  padding: 0 0 30px;
+}
+
+.About__list:last-of-type {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .About__list:last-of-type {
+    padding: 0 0 30px;
+  }
+}

@@ -86,6 +86,9 @@
 @import url(../src/components/About/__container/About__container.css);
 @import url(../src/components/About/__col/About__col.css);
 @import url(../src/components/About/__subheader/About__subheader.css);
+@import url(../src/components/About/__list/About__list.css);
+@import url(../src/components/About/__list-item/About__list-item.css);
+@import url(../src/components/About/__list-item/_spread/About__list-item_spread.css);
 
 /* Tech block */
 @import url(../src/components/Tech/Tech.css);
