@@ -33,7 +33,7 @@ export const en = {
     "error_msg": "An error happened!",
     "exit_account": "Logout",
     "fe_dev": "Front end developer",
-    "film": "Film",
+    "film": "Movie",
     "glad_to_see": "Welcome back!",
     "havent_registered": "Haven't registered yet?",
     "hi": "Hi ",
