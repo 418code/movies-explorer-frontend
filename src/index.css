@@ -25,6 +25,8 @@
 @import url(./components/App/__link/_weight/App__link_weight_bold.css);
 @import url(../src/components/App/__list/App__list.css);
 @import url(../src/components/App/__header/App__header.css);
+@import url(../src/components/App/__divider/App__divider.css);
+@import url(../src/components/App/__divider/_visible/App__divider_visible.css);
 
 
 /* NotFound block */
@@ -157,7 +159,6 @@
 
 /* SavedMovies block */
 @import url(../src/components/SavedMovies/SavedMovies.css);
-@import url(../src/components/SavedMovies/__divider/SavedMovies__divider.css);
 
 /* Profile block */
 @import url(../src/components/Profile/Profile.css);

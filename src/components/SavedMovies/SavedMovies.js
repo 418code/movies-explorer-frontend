@@ -44,7 +44,7 @@ export default function SavedMovies ({
          savedMoviesFlags={savedMoviesFlags} />
       <SearchNotFound visible={!savedPreloaderVisible && checkedSaved &&
         (savedShort ? shortSearch.length === 0 : search.length === 0)}/>
-      <section className="SavedMovies__divider">
+      <section className={`App__divider ${(!savedPreloaderVisible && !checkedSaved) ? 'App__divider_visible' : ''}`}>
       </section>
     </main>
     <Footer />

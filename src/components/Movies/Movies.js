@@ -59,7 +59,7 @@ export default function Movies(
   }, []);
 
   const [maxHeight, setMaxHeight] = useState(calcHeight);
-  const [loaderVisible, setLoaderVisible] = useState(true);
+  const [loaderVisible, setLoaderVisible] = useState(false);
 
   //reset maxHeight on search
   useEffect(() => {
@@ -103,6 +103,8 @@ export default function Movies(
         <Loader visible={loaderVisible && !currPreloaderVisible} setMaxHeight={setMaxHeight} />
         <SearchNotFound visible={!currPreloaderVisible && currentSearchMade &&
          (currentShort ? shortSearch.length === 0 : search.length === 0)}/>
+        <section className={`App__divider ${(!currPreloaderVisible && !currentSearchMade) ? 'App__divider_visible' : ''}`}>
+        </section>
       </main>
       <Footer />
     </>
