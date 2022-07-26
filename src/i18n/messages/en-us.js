@@ -29,6 +29,7 @@ export const en = {
     "back": "Back",
     "blank": "blank",
     "edit": "Edit",
+    "email_placeholder": "explorer@movies.com",
     "enter": "Login",
     "error_msg": "An error happened!",
     "exit_account": "Logout",

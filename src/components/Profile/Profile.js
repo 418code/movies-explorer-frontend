@@ -46,7 +46,8 @@ export default function Profile (props) {
                 <td className="Profile__cell">E-mail</td>
                 <td>
                   <input name="email" type="email" className={`Profile__input ${errors['email'] ? 'Profile__input_type_error' : ''}`}
-                    placeholder="pochta@yandex.ru" minLength="3" maxLength="128" value={values['email'] || ''} onChange={handleChange} required/>
+                    placeholder={intl.formatMessage({id: 'email_placeholder', defaultMessage: 'pochta@yandex.ru'})}
+                    minLength="3" maxLength="128" value={values['email'] || ''} onChange={handleChange} required/>
                 </td>
               </tr>
               <tr className="Profile__row">

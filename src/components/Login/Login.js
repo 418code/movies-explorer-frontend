@@ -22,7 +22,8 @@ export default function Login(props) {
       <div className="EnterForm__fields">
         <label className="EnterForm__label">E-mail</label>
         <input name="email" type="email" className={`EnterForm__input ${errors['email'] ? 'EnterForm__input_type_error' : ''}`}
-         placeholder="pochta@yandex.ru" minLength="3" maxLength="128"
+         placeholder={intl.formatMessage({id: 'email_placeholder', defaultMessage: 'pochta@yandex.ru'})}
+         minLength="3" maxLength="128"
          value={values['email'] || ''} onChange={handleChange} required/>
         <span className={`EnterForm__input-error ${!isValid ? 'EnterForm__input-error_active' : ''}`}>{errors['email']}</span>
         <label className="EnterForm__label">{intl.formatMessage({id: 'password'})}</label>

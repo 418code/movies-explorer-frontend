@@ -29,6 +29,7 @@ export const ru = {
     "back": "Назад",
     "blank": "blank",
     "edit": "Редактировать",
+    "email_placeholder": "pochta@yandex.ru",
     "enter": "Войти",
     "error_msg": "Произошла ошибка!",
     "exit_account": "Выйти из аккаунта",
