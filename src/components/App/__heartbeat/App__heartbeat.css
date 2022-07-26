@@ -1,0 +1,13 @@
+@keyframes heartbeat {
+  0%
+  {    transform: scale( .9 );  }
+  100%
+  {    transform: scale( 1 );  }
+}
+
+.App__heartbeat {
+  animation-name: heartbeat;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-direction: normal;
+}

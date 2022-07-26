@@ -24,7 +24,7 @@ export default function Tech(props) {
           defaultMessage: 'На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.'})}
       </p>
       <ul className="Tech__list">
-        {logos.map(tech => <li key={tech}><img src={tech} alt="tech logo" className="Tech__logo" /></li>)}
+        {logos.map(tech => <li key={tech}><img src={tech} alt="tech logo" className="Tech__logo  App__heartbeat" /></li>)}
       </ul>
     </section>
   );

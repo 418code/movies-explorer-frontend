@@ -27,6 +27,7 @@
 @import url(../src/components/App/__header/App__header.css);
 @import url(../src/components/App/__divider/App__divider.css);
 @import url(../src/components/App/__divider/_visible/App__divider_visible.css);
+@import url(../src/components/App/__heartbeat/App__heartbeat.css);
 
 
 /* NotFound block */
