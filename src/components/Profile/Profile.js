@@ -13,7 +13,7 @@ export default function Profile (props) {
 
   const intl = useIntl();
 
-  const disabledButtonCondition = (isValid &&
+  const disabledButtonCondition = (!isValid ||
     (values.name === currentUser.name &&
       values.email === currentUser.email &&
       values.locale === currentUser.locale));
