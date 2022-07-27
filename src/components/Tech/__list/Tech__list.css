@@ -1,11 +1,9 @@
 .Tech__list {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-
   flex-wrap: wrap;
   gap: 30px;
-  width: 178px;
+  width: 230px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -14,6 +12,7 @@
 @media (min-width: 768px) {
   .Tech__list {
     width: calc(100% - 20px);
+    justify-content: center;
     gap: 50px;
   }
 }
