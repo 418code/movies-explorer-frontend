@@ -1,5 +1,3 @@
-import { LOCALES } from "../i18n";
-
 const apiConfig = {
   baseUrl: (process.env.NODE_ENV === 'production') ? 'https://api.movies.418co.de/' : 'http://localhost:3000/',
   appJSONType: 'application/json'
