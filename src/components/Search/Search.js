@@ -31,12 +31,15 @@ const Search = ({defaultText, defaultShort, handleSearch, setShort}) => {
           <input type="text" placeholder={intl.formatMessage({id: 'film', defaultMessage: 'Фильм'})}
            className="Search__input" value={searchField}
            onChange={handleSearchInput} required />
-          <button className="Search__button" onClick={handleSubmit} type="submit"></button>
+          <button className="Search__button" onClick={handleSubmit}
+           aria-label={intl.formatMessage({id: 'search_btn_aria', defaultMessage: 'Кнопка поиска'})}
+          type="submit"></button>
         </div>
         <div className="Search__label">
           <label htmlFor="switch" className="Search__slider-box">
             <input id="switch" type="checkbox" className="Search__checkbox"
-             checked={shortField} onChange={handleShortSwitch} />
+              aria-label={intl.formatMessage({id: 'search_switch_aria', defaultMessage: 'Фильтр короткометражек'})}
+              checked={shortField} onChange={handleShortSwitch} />
             <span className="Search__slider"></span>
           </label>
           <span className="Search__label-text">
