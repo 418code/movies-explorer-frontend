@@ -15,7 +15,9 @@ export default function Header(props) {
       </Link>
       {isLoggedIn ?
                           <>
-                            <button onClick={props.menuClickHandler} className="Header__menu-btn"></button>
+                            <button onClick={props.menuClickHandler}
+                              aria-label={intl.formatMessage({id: 'mobile_menu_btn_aria', defaultMessage: 'Кнопка меню'})}
+                              className="Header__menu-btn"></button>
                             <nav className="Header__nav">
                               <ul className="Header__list">
                                 <li className="Header__list-item Header__list-item_space_close" key="movies">

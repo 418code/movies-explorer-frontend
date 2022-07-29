@@ -46,6 +46,7 @@ export const ru = {
     "locale": "Язык",
     "load_more": "Ещё",
     "logo": "логотип",
+    "mobile_menu_btn_aria": "Кнопка меню",
     "movie_preview_pic": "картинка превью фильма",
     "movies": "Фильмы",
     "my_name": "Максим",

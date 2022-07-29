@@ -46,6 +46,7 @@ export const en = {
     "locale": "Language",
     "load_more" : "Show more",
     "logo": "logo",
+    "mobile_menu_btn_aria": "Menu button",
     "movies": "Movies",
     "movie_preview_pic": "movie preview image",
     "my_name": "Maxim",
