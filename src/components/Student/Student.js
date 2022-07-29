@@ -138,12 +138,12 @@ export default function Student() {
         <li className="Student__list-item">
           <ul className="App__list Student__list Student__list_size_large">
             <li key="mesto">
-              <a href="https://github.com/418code/react-mesto-api-full" target="_blank" rel="noreferrer" className="App__link">
+              <a href="https://github.com/418code/react-mesto-frontend" target="_blank" rel="noreferrer" className="App__link">
                 {intl.formatMessage({id: 'spa', defaultMessage: 'Одностраничное приложение'})}
               </a>
             </li>
             <li key="mesto-arrow">
-              <a href="https://github.com/418code/react-mesto-api-full" target="_blank" rel="noreferrer" className="App__link Student__link"></a>
+              <a href="https://github.com/418code/react-mesto-frontend" target="_blank" rel="noreferrer" className="App__link Student__link"></a>
             </li>
           </ul>
         </li>
