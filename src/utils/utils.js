@@ -84,6 +84,16 @@ function transformData(data) {
   }
   data = data.map(obj => buildNewObj(obj, (key, val) => changeKV(key, val) ));
 
+  //remove empty cards
+  data = data.filter(obj => obj.trailer !== 'none');
+
+  //rename cards if title isn't available in english
+  data.forEach(obj => {
+    if (obj.nameEN === 'none') {
+      obj.nameEN = obj.nameRU;
+    }
+  });
+
   //only return fields that my api accepts
   data = data.map(obj => Object.fromEntries(
     cardFields
