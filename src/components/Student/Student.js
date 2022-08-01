@@ -126,7 +126,7 @@ export default function Student() {
           <ul className="App__list Student__list Student__list_size_large">
             <li key="how2learn">
               <a
-                href="https://github.com/418code/how-to-learn"
+                href="https://418code.github.io/how-to-learn/"
                 target="_blank"
                 rel="noreferrer"
                 className="App__link"
@@ -139,7 +139,7 @@ export default function Student() {
             </li>
             <li key="how2learn-arrow">
               <a
-                href="https://github.com/418code/how-to-learn"
+                href="https://418code.github.io/how-to-learn/"
                 target="_blank"
                 rel="noreferrer"
                 className="App__link Student__link"
@@ -151,7 +151,7 @@ export default function Student() {
           <ul className="App__list Student__list Student__list_size_large">
             <li key="rutravel">
               <a
-                href="https://github.com/418code/russian-travel"
+                href="https://418code.github.io/russian-travel/"
                 target="_blank"
                 rel="noreferrer"
                 className="App__link"
@@ -164,7 +164,7 @@ export default function Student() {
             </li>
             <li key="rutravel-arrow">
               <a
-                href="https://github.com/418code/russian-travel"
+                href="https://418code.github.io/russian-travel/"
                 target="_blank"
                 rel="noreferrer"
                 className="App__link Student__link"
