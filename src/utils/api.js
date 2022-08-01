@@ -1,4 +1,4 @@
-import { apiConfig } from './utils';
+import { apiConfig } from "./utils";
 
 class Api {
   constructor(options) {
@@ -6,7 +6,7 @@ class Api {
     this._headers = options.headers;
     this._authHeaders = {};
     Object.assign(this._authHeaders, this._headers);
-    this._authHeaders.Authorization = 'Bearer ';
+    this._authHeaders.Authorization = "Bearer ";
   }
 
   /**
@@ -20,14 +20,12 @@ class Api {
     const fetchObject = {
       method: method,
       headers: this._headers,
-      credentials: 'include',
-    }
-    if (method === 'POST' || method === 'PATCH')
-      fetchObject['body'] = JSON.stringify(body);
-    return fetch(`${this._baseUrl}${path}`, fetchObject)
-    .then(res => {
-      if (res.ok)
-        return res.json();
+      credentials: "include",
+    };
+    if (method === "POST" || method === "PATCH")
+      fetchObject["body"] = JSON.stringify(body);
+    return fetch(`${this._baseUrl}${path}`, fetchObject).then((res) => {
+      if (res.ok) return res.json();
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -37,8 +35,12 @@ class Api {
    * @param {Object} object - {email, password}
    * @returns {Promise}
    */
-  register( {name, email, password} ) {
-    return this._fetchPath('signup', 'POST', {name: name, email: email, password: password});
+  register({ name, email, password }) {
+    return this._fetchPath("signup", "POST", {
+      name: name,
+      email: email,
+      password: password,
+    });
   }
 
   /**
@@ -47,7 +49,10 @@ class Api {
    * @returns {Promise}
    */
   signIn({ email, password }) {
-    return this._fetchPath('signin', 'POST', {email: email, password: password});
+    return this._fetchPath("signin", "POST", {
+      email: email,
+      password: password,
+    });
   }
 
   /**
@@ -55,7 +60,7 @@ class Api {
    * @returns {Promise}
    */
   signOut() {
-    return this._fetchPath('signout', 'POST');
+    return this._fetchPath("signout", "POST");
   }
 
   /**
@@ -63,7 +68,7 @@ class Api {
    * @returns {Promise}
    */
   getUserInfo() {
-    return this._fetchPath('users/me', 'GET');
+    return this._fetchPath("users/me", "GET");
   }
 
   /**
@@ -72,7 +77,7 @@ class Api {
    * @returns {Promise}
    */
   setUserInfo(currentUser) {
-    return this._fetchPath('users/me', 'PATCH', currentUser);
+    return this._fetchPath("users/me", "PATCH", currentUser);
   }
 
   /**
@@ -80,7 +85,7 @@ class Api {
    * @returns {Promise}
    */
   loadSavedMovies() {
-    return this._fetchPath('movies', 'GET');
+    return this._fetchPath("movies", "GET");
   }
 
   /**
@@ -89,7 +94,7 @@ class Api {
    * @returns {Promise}
    */
   saveCard(card) {
-    return this._fetchPath('movies', 'POST', card);
+    return this._fetchPath("movies", "POST", card);
   }
 
   /**
@@ -98,7 +103,7 @@ class Api {
    * @returns {Promise}
    */
   deleteCard(id) {
-    return this._fetchPath(`movies/${id}`, 'DELETE');
+    return this._fetchPath(`movies/${id}`, "DELETE");
   }
 }
 
@@ -107,8 +112,8 @@ class Api {
 const api = new Api({
   baseUrl: apiConfig.baseUrl,
   headers: {
-    'Content-Type': apiConfig.appJSONType
-  }
+    "Content-Type": apiConfig.appJSONType,
+  },
 });
 
 export { api };

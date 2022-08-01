@@ -1,18 +1,25 @@
-import { useEffect } from 'react';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import Search from '../Search/Search';
-import Cards from '../Cards/Cards';
-import Preloader from '../Preloader/Preloader';
-import SearchNotFound from '../SearchNotFound/SearchNotFound';
+import { useEffect } from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import Search from "../Search/Search";
+import Cards from "../Cards/Cards";
+import Preloader from "../Preloader/Preloader";
+import SearchNotFound from "../SearchNotFound/SearchNotFound";
 
-export default function SavedMovies ({
-  menuClickHandler, handleSearch, savedPreloaderVisible, handleCardDelete,
-  savedMoviesFlags, resetSavedSearch, savedSearch, checkedSaved, resetSavedText,
-  savedShort, setSavedShort,
-   }) {
-
-  const {search, shortSearch} = savedSearch;
+export default function SavedMovies({
+  menuClickHandler,
+  handleSearch,
+  savedPreloaderVisible,
+  handleCardDelete,
+  savedMoviesFlags,
+  resetSavedSearch,
+  savedSearch,
+  checkedSaved,
+  resetSavedText,
+  savedShort,
+  setSavedShort,
+}) {
+  const { search, shortSearch } = savedSearch;
 
   //clear saved search on unmount
   useEffect(() => {
@@ -24,30 +31,48 @@ export default function SavedMovies ({
   }, [resetSavedSearch]);
 
   useEffect(() => {
-      setSavedShort(false);
+    setSavedShort(false);
   }, [setSavedShort]);
 
   return (
     <>
-    <Header menuClickHandler={menuClickHandler} />
-    <main className="SavedMovies">
-      <Search handleSearch={handleSearch}
-        defaultText="" defaultShort={false}
-        searchPerformed={checkedSaved}
-        setShort={setSavedShort} />
-      <Preloader visible={savedPreloaderVisible} />
-      <Cards
-         cards={savedShort ? shortSearch : search}
-         visible={!savedPreloaderVisible && checkedSaved &&
-          (savedShort ? shortSearch.length > 0 : search.length > 0)}
-         btnType="delete" handleBtnClick={handleCardDelete}
-         savedMoviesFlags={savedMoviesFlags} />
-      <SearchNotFound visible={!savedPreloaderVisible && checkedSaved &&
-        (savedShort ? shortSearch.length === 0 : search.length === 0)}/>
-      <section className={`App__divider ${(!savedPreloaderVisible && !checkedSaved) ? 'App__divider_visible' : ''}`}>
-      </section>
-    </main>
-    <Footer />
-  </>
+      <Header menuClickHandler={menuClickHandler} />
+      <main className="SavedMovies">
+        <Search
+          handleSearch={handleSearch}
+          defaultText=""
+          defaultShort={false}
+          searchPerformed={checkedSaved}
+          setShort={setSavedShort}
+        />
+        <Preloader visible={savedPreloaderVisible} />
+        <Cards
+          cards={savedShort ? shortSearch : search}
+          visible={
+            !savedPreloaderVisible &&
+            checkedSaved &&
+            (savedShort ? shortSearch.length > 0 : search.length > 0)
+          }
+          btnType="delete"
+          handleBtnClick={handleCardDelete}
+          savedMoviesFlags={savedMoviesFlags}
+        />
+        <SearchNotFound
+          visible={
+            !savedPreloaderVisible &&
+            checkedSaved &&
+            (savedShort ? shortSearch.length === 0 : search.length === 0)
+          }
+        />
+        <section
+          className={`App__divider ${
+            !savedPreloaderVisible && !checkedSaved
+              ? "App__divider_visible"
+              : ""
+          }`}
+        ></section>
+      </main>
+      <Footer />
+    </>
   );
 }
