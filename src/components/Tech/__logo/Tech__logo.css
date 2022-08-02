@@ -1,11 +1,4 @@
 .Tech__logo {
-  height: 100px;
-  width: 100px;
-}
-
-@media (min-width: 768px) {
-  .Tech__logo {
-    height: 80px;
-    width: 80px;
-  }
+  height: 80px;
+  width: 80px;
 }
