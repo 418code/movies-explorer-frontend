@@ -41,9 +41,10 @@ Technical features:
 
 Steps to run the full app locally:
 1. Install MongoDB (tested with V5) and NodeJS (tested with V16)
-2. Clone [backend](https://github.com/418code/movies-explorer-api) and [frontend](https://github.com/418code/movies-explorer-frontend) locally and install dependencies with `npm install` in each folder
-3. Run `npm run dev` in the backend folder and `npm run start` in the frontend folder
-4. Use the app at http://localhost:3001/
+2. Create moviesdb database with movies and users collections using MongoDB Compass
+3. Clone [backend](https://github.com/418code/movies-explorer-api) and [frontend](https://github.com/418code/movies-explorer-frontend) locally and install dependencies with `npm install` in each folder
+4. Run `npm run dev` in the backend folder and `npm run start` in the frontend folder
+5. Use the app at http://localhost:3001/
 
 Screenshots:
 
