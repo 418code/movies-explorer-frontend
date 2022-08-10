@@ -44,3 +44,21 @@ Steps to run the full app locally:
 2. Clone [backend](https://github.com/418code/movies-explorer-api) and [frontend](https://github.com/418code/movies-explorer-frontend) locally and install dependencies with `npm install` in each folder
 3. Run `npm run dev` in the backend folder and `npm run start` in the frontend folder
 4. Use the app at http://localhost:3001/
+
+Screenshots:
+
+![Alt text](/screenshots/landing.png?raw=true "Landing screenshot")
+
+![Alt text](/screenshots/register.png?raw=true "Registration screenshot")
+
+![Alt text](/screenshots/login.png?raw=true "Login screenshot")
+
+![Alt text](/screenshots/movies.png?raw=true "Movies screenshot")
+
+![Alt text](/screenshots/shorts.png?raw=true "Shorts screenshot")
+
+![Alt text](/screenshots/saved.png?raw=true "Saved screenshot")
+
+![Alt text](/screenshots/account.png?raw=true "Profile screenshot")
+
+
